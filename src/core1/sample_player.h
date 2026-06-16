@@ -1,6 +1,7 @@
 #pragma once
 
 #include <ESP32Synth.h>
+#include "../shared/config.h"   // SEQ_TRACKS = 6
 
 // ============================================================
 // GrooveS3 — PCM sample player (Core 1)
@@ -8,7 +9,8 @@
 // Samples are expected in /samples/ on the SD root.
 // ============================================================
 
-#define MAX_VOICES   6     // one per sequencer track
+// Use SEQ_TRACKS (6) as the voice count — do NOT redefine MAX_VOICES
+// which is already set to 80 by ESP32Synth_Config.hpp.
 
 void samplePlayerInit();
 void samplePlayerLoad(uint8_t voice, const char* path);  // load WAV from SD

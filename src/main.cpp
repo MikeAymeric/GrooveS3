@@ -20,12 +20,14 @@ QueueHandle_t gMidiQueue = nullptr;
 // Core 0 task: sequencer + input + UI + MIDI I/O
 // ============================================================
 static void taskSequencer(void* /*arg*/) {
+    // seqTask initialises sequencer state and enters the main Core 0 loop
+    // which also drives inputPoll(), uiUpdate(), and midiPoll().
+    // Peripheral init (SPI, Wire, UART) happens inside before the loop starts.
     inputInit();
     uiInit();
     midiInit();
-
-    // Kick off the sequencer loop
-    seqTask(nullptr);  // seqTask contains its own infinite loop
+    seqTask(nullptr);
+    // never returns
 }
 
 // ============================================================

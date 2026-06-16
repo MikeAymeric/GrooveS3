@@ -1,5 +1,7 @@
 #include "sequencer.h"
 #include "input.h"
+#include "ui.h"
+#include "midi.h"
 #include "../shared/midi_message.h"
 #include "../shared/config.h"
 
@@ -55,7 +57,7 @@ void seqInit() {
     for (int t = 0; t < SEQ_TRACKS; t++) {
         sTracks[t].note     = kDefaultNotes[t];
         sTracks[t].velocity = 100;
-        sTracks[t].channel  = 0;       // channel 1
+        sTracks[t].channel  = (uint8_t)t;  // each track → unique voice (0-5)
         sTracks[t].midiLen  = 1;
         for (int s = 0; s < SEQ_STEPS; s++) sTracks[t].steps[s] = false;
     }
@@ -89,30 +91,52 @@ void     seqStop()           { sPlaying = false; }
 
 void seqTask(void* /*arg*/) {
     seqInit();
-    TickType_t xLastWake = xTaskGetTickCount();
+
+    // xLastWake tracks the step clock independently of the UI/input poll rate.
+    TickType_t xLastStepWake  = xTaskGetTickCount();
+    TickType_t xLastInputWake = xTaskGetTickCount();
+
+    static const TickType_t kInputIntervalTicks = pdMS_TO_TICKS(5);   // input poll @ 200Hz
+    uint32_t stepIntervalCached = stepIntervalMs();
 
     for (;;) {
-        // Update BPM from potentiometer
+        // --- High-frequency: input + MIDI IN + UI (every 5ms) ---
+        if ((xTaskGetTickCount() - xLastInputWake) >= kInputIntervalTicks) {
+            xLastInputWake = xTaskGetTickCount();
+            inputPoll();
+            midiPoll();
+            uiUpdate();  // internally throttled to DISPLAY_FPS_MAX
+
+            // Update LED strip to reflect current sequencer state
+            for (uint8_t s = 0; s < SEQ_STEPS; s++) {
+                bool on = seqGetStep(sActiveTrack, s) || (sPlaying && s == sCurrentStep);
+                inputSetLed(s, on);
+            }
+            inputFlushLeds();
+        }
+
+        // --- BPM pot: re-read every step to update timing ---
         float potNorm = inputGetPotNorm(0);  // POT_BPM
         uint16_t newBpm = (uint16_t)(SEQ_BPM_MIN + potNorm * (SEQ_BPM_MAX - SEQ_BPM_MIN));
         seqSetBpm(newBpm);
+        stepIntervalCached = stepIntervalMs();
 
-        if (sPlaying) {
-            // Trigger active steps for all tracks
+        // --- Sequencer step clock ---
+        if (sPlaying &&
+            (xTaskGetTickCount() - xLastStepWake) >= pdMS_TO_TICKS(stepIntervalCached))
+        {
+            xLastStepWake = xTaskGetTickCount();
+
             for (int t = 0; t < SEQ_TRACKS; t++) {
                 if (sTracks[t].steps[sCurrentStep]) {
                     sendNote(t, true);
                 }
             }
-
-            // Advance step
             sCurrentStep = (sCurrentStep + 1) % SEQ_STEPS;
-
-            // Note-off deferred to next step (length = 1 step)
-            // TODO: implement per-track note length
+        } else if (!sPlaying) {
+            xLastStepWake = xTaskGetTickCount();  // keep reference fresh while stopped
         }
 
-        // Sleep until next step boundary
-        vTaskDelayUntil(&xLastWake, pdMS_TO_TICKS(stepIntervalMs()));
+        vTaskDelay(pdMS_TO_TICKS(1));
     }
 }

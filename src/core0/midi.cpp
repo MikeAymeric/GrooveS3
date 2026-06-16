@@ -17,20 +17,20 @@ void midiInit() {
 }
 
 void midiSendMessage(const MidiMessage& msg) {
-    uint8_t status = (uint8_t)msg.type | (msg.channel & 0x0F);
-    sMidiSerial.write(status);
-
     switch (msg.type) {
         case MidiMsgType::NOTE_ON:
         case MidiMsgType::NOTE_OFF:
         case MidiMsgType::CC:
-            sMidiSerial.write(msg.note & 0x7F);
+            // Channel messages: status = type | channel (0-based)
+            sMidiSerial.write((uint8_t)msg.type | (msg.channel & 0x0F));
+            sMidiSerial.write(msg.note     & 0x7F);
             sMidiSerial.write(msg.velocity & 0x7F);
             break;
         case MidiMsgType::CLOCK:
         case MidiMsgType::START:
         case MidiMsgType::STOP:
-            // Single-byte real-time messages — status already sent
+            // Real-time: single byte, no channel field
+            sMidiSerial.write((uint8_t)msg.type);
             break;
         default:
             break;
@@ -41,8 +41,24 @@ void midiPoll() {
     while (sMidiSerial.available()) {
         uint8_t b = (uint8_t)sMidiSerial.read();
 
+        // Real-time messages (0xF8-0xFF) are single-byte and can appear anywhere,
+        // including in the middle of other messages. Handle them without touching
+        // the running-status state machine.
+        if (b >= 0xF8) {
+            MidiMessage msg;
+            msg.channel  = 0;
+            msg.note     = 0;
+            msg.velocity = 0;
+            if      (b == 0xF8) msg.type = MidiMsgType::CLOCK;
+            else if (b == 0xFA) msg.type = MidiMsgType::START;
+            else if (b == 0xFC) msg.type = MidiMsgType::STOP;
+            else continue;  // ignore other system real-time (0xFE active sensing, etc.)
+            xQueueSend(gMidiQueue, &msg, 0);
+            continue;
+        }
+
         if (b & 0x80) {
-            // Status byte
+            // Status byte — update running status and reset data byte counter
             sStatus  = b;
             sByteIdx = 0;
             sByte1   = 0;

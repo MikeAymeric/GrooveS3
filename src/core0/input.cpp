@@ -4,6 +4,10 @@
 
 #include <Arduino.h>
 #include <SPI.h>
+#include <freertos/semphr.h>
+
+// SPI bus mutex shared with sample_player.cpp (Core 1 SD access)
+extern SemaphoreHandle_t gSpiMutex;
 
 // ============================================================
 // Static state
@@ -32,6 +36,8 @@ static const uint8_t kEncBtnPins[2] = { PIN_ENC1_BTN, PIN_ENC2_BTN };
 // Encoder ISRs
 // ============================================================
 
+// Both the helper and the dispatchers must be IRAM_ATTR so the linker
+// places them in IRAM and avoids cache-miss crashes during flash access.
 static void IRAM_ATTR isr_enc(int idx) {
     bool a = digitalRead(kEncAPins[idx]);
     bool b = digitalRead(kEncBPins[idx]);
@@ -84,22 +90,28 @@ void inputInit() {
 // ============================================================
 
 static uint32_t hc165Read() {
-    // Pulse LOAD low to latch parallel inputs
-    digitalWrite(PIN_HC165_LOAD, LOW);
-    delayMicroseconds(1);
-    digitalWrite(PIN_HC165_LOAD, HIGH);
+    uint8_t hi = 0, lo = 0;
 
-    SPI.beginTransaction(SPISettings(4000000, MSBFIRST, SPI_MODE0));
-    uint8_t hi = SPI.transfer(0xFF);
-    uint8_t lo = SPI.transfer(0xFF);
-    SPI.endTransaction();
+    if (gSpiMutex && xSemaphoreTake(gSpiMutex, pdMS_TO_TICKS(5)) == pdTRUE) {
+        // Pulse LOAD low to latch parallel inputs
+        digitalWrite(PIN_HC165_LOAD, LOW);
+        delayMicroseconds(1);
+        digitalWrite(PIN_HC165_LOAD, HIGH);
+
+        SPI.beginTransaction(SPISettings(4000000, MSBFIRST, SPI_MODE0));
+        hi = SPI.transfer(0xFF);
+        lo = SPI.transfer(0xFF);
+        SPI.endTransaction();
+
+        xSemaphoreGive(gSpiMutex);
+    }
 
     // HC165 outputs 1 when button is open, 0 when pressed — invert
     uint16_t steps = ~((uint16_t)(hi << 8) | lo);
 
     // Function buttons on dedicated GPIO (active-low)
     uint32_t func = 0;
-    if (!digitalRead(PIN_SHIFT_BTN)) func |= BTN_PLAY;  // remap as needed
+    if (!digitalRead(PIN_SHIFT_BTN)) func |= BTN_PLAY;
 
     return (func << 16) | steps;
 }
@@ -109,11 +121,13 @@ static uint32_t hc165Read() {
 // ============================================================
 
 void inputFlushLeds() {
+    if (!gSpiMutex || xSemaphoreTake(gSpiMutex, pdMS_TO_TICKS(5)) != pdTRUE) return;
     SPI.beginTransaction(SPISettings(4000000, MSBFIRST, SPI_MODE0));
     digitalWrite(PIN_HC595_LATCH, LOW);
     SPI.transfer16(sLedBuffer);
     digitalWrite(PIN_HC595_LATCH, HIGH);
     SPI.endTransaction();
+    xSemaphoreGive(gSpiMutex);
 }
 
 void inputSetLed(uint8_t step, bool on) {
@@ -178,9 +192,12 @@ bool inputButtonPressed(uint8_t step) {
 
 int32_t inputGetEncoderDelta(uint8_t enc) {
     if (enc > 1) return 0;
-    // Atomic read — position is volatile but this is Core 0 only outside ISR
+    // Disable interrupts for the read-modify-write so the ISR cannot fire
+    // between reading position and clearing it.
+    portDISABLE_INTERRUPTS();
     int32_t delta = sEnc[enc].position;
     sEnc[enc].position = 0;
+    portENABLE_INTERRUPTS();
     return delta;
 }
 
