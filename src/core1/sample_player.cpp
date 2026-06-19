@@ -68,7 +68,7 @@ void samplePlayerLoad(uint8_t voice, const char* path) {
         return;
     }
 
-    FsFile f = sSD.open(path, FILE_READ);
+    FsFile f = sSD.open(path, O_RDONLY);
     xSemaphoreGive(gSpiMutex);
 
     if (!f) {

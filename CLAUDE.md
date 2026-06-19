@@ -56,7 +56,7 @@ Full table in `docs/pinout.md`. Critical constraints:
 
 ## ESP32Synth Notes
 
-Library: `danilogcrf2-oss/ESP32Synth` v2.4.1. `MAX_VOICES` is defined as 80 in `ESP32Synth_Config.hpp`. **Do not redefine `MAX_VOICES` anywhere** — use `SEQ_TRACKS` (6) for our voice count. `struct Voice` is also defined by the library globally — never declare another `struct Voice`.
+Library: `danilogcrf2-oss/ESP32Synth` v2.4.2. `MAX_VOICES` is defined as 80 in `ESP32Synth_Config.hpp`. **Do not redefine `MAX_VOICES` anywhere** — use `SEQ_TRACKS` (6) for our voice count. `struct Voice` is also defined by the library globally — never declare another `struct Voice`.
 
 DMA latency is configured via build flags in `platformio.ini`:
 ```
@@ -64,6 +64,14 @@ DMA latency is configured via build flags in `platformio.ini`:
 -DSYNTH_DMA_BUF_COUNT=2
 ```
 This gives ~5ms latency, suitable for a groovebox.
+
+## Platform
+
+Uses **pioarduino** (`platform-espressif32` fork) instead of the official Espressif PlatformIO platform, because ESP32Synth v2.4+ requires `driver/i2s_pdm.h` which is only available in ESP-IDF 5.x. The official platform was still on IDF 4.4 at time of setup.
+
+Current: `pioarduino/platform-espressif32 55.03.39` → arduino-esp32 3.3.9 + IDF 5.5.4.
+
+**SdFat + arduino-esp32 3.x conflict:** arduino-esp32 3.x redefines `FILE_READ` as `"r"` (string), which conflicts with `SdFat::open()` expecting an `oflag_t`. Always use `O_RDONLY` instead of `FILE_READ` when opening files with SdFat.
 
 ## Branch Strategy
 
