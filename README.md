@@ -33,7 +33,7 @@ Bill of materials: [docs/bom.md](docs/bom.md)
 │  Core 0                         Core 1                      │
 │  ──────────────────────         ──────────────────────      │
 │  [Sequencer task]               [AudioEngine task]          │
-│    • 16-step × 6-track            • ESP32Synth              │
+│    • 16-step × 6-track            • AMY synthesizer         │
 │    • BPM clock (FreeRTOS)         • PCM sample player       │
 │    • Input polling                • I2S → PCM5102A          │
 │      (HC165, encoders, ADC)       • PSRAM sample buffers    │
@@ -47,7 +47,7 @@ Bill of materials: [docs/bom.md](docs/bom.md)
 ```
 
 Core 0 produces `MidiMessage` structs into a FreeRTOS queue.  
-Core 1 drains the queue and dispatches to ESP32Synth or sample player.  
+Core 1 drains the queue and dispatches to AMY synthesizer or sample player.  
 Both cores are completely decoupled — the queue is the only shared state.
 
 ---
@@ -69,7 +69,7 @@ GrooveS3/
 │   │   ├── ui.*               # OLED display
 │   │   └── midi.*             # DIN MIDI IN/OUT
 │   └── core1/
-│       ├── audio_engine.*     # ESP32Synth wrapper
+│       ├── audio_engine.*     # AMY synthesizer wrapper
 │       └── sample_player.*    # PCM WAV from SD via PSRAM
 ├── docs/
 │   ├── pinout.md
@@ -117,9 +117,9 @@ Create a `/samples/` folder and place WAV files (16-bit PCM, 44100 Hz, mono or s
 
 ### Phase 1 — Audio POC
 - [x] Project scaffold and pinout
-- [ ] ESP32Synth on Core 1 producing tone via I2S → PCM5102A
-- [ ] SD card mount and single WAV playback
-- [ ] Inter-core queue: manual trigger from Serial
+- [x] AMY synthesizer on Core 1, inter-core queue (MidiMessage), dual-core FreeRTOS architecture
+- [x] SD card mount and WAV loading into PSRAM (6 default samples)
+- [ ] First audio test: AMY → I2S → PCM5102A DAC (hardware pending)
 
 ### Phase 2 — Sequencer + UI
 - [ ] 16-step sequencer with BPM clock on Core 0
