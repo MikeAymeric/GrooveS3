@@ -81,5 +81,5 @@ Current: `pioarduino/platform-espressif32 55.03.39` → arduino-esp32 3.3.9 + ID
 
 ## Branch Strategy
 
-- `master` — stable, releasable
+- `main` — stable, releasable
 - `develop` — active development, all work goes here
