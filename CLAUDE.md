@@ -32,7 +32,7 @@ Core 0 — taskSequencer (priority 1, stack 8192)
   inputInit / uiInit / midiInit called before entering the loop
 
 Core 1 — taskAudio (priority 2, stack 16384)
-  audioEngineTask() ← drains gMidiQueue → dispatchMidi() → ESP32Synth voices
+  audioEngineTask() ← drains gMidiQueue → dispatchMidi() → AMY voices
   samplePlayerInit() also runs here (SD card on SPI, PSRAM sample buffers)
 ```
 
@@ -40,11 +40,11 @@ Core 1 — taskAudio (priority 2, stack 16384)
 
 ## Key Design Decisions
 
-**ESP32Synth is voice-based, not MIDI-channel-based.** `noteOn(voice, freqCentiHz, volume)` — notes use CentiHz (not MIDI note numbers). `midiNoteToCentiHz()` in `audio_engine.cpp` converts. Each of the 6 sequencer tracks maps to a unique voice index via `sTracks[t].channel = t` set in `seqInit()`.
+**AMY is voice-based, not MIDI-channel-based.** `amy_add_event(&e)` with `e.osc = voice` and `e.midi_note` (native MIDI note number, no conversion needed). Each of the 6 sequencer tracks maps to a unique voice index via `sTracks[t].channel = t` set in `seqInit()`.
 
 **SPI bus is shared between two cores.** HC165/HC595 (Core 0, input.cpp) and SD card (Core 1, sample_player.cpp) both use SPI. Access is serialised via `gSpiMutex` (defined in `sample_player.cpp`, extern in `input.cpp`). The mutex is created in `samplePlayerInit()` — HC165/HC595 functions guard on `gSpiMutex != nullptr` and skip silently if called before it exists.
 
-**`SMODE_PWM` on GPIO47** is available for audio testing without the PCM5102A DAC. Change `initI2S()` in `audio_engine.cpp` to `sSynth.begin(PIN_SPARE, SMODE_PWM, -1, -1, I2S_16BIT)` for a wire-a-jack-and-go audio POC.
+**AMY audio output requires the PCM5102A DAC** — AMY uses I2S and has no PWM fallback mode. Without the DAC, there is no audio output. Pins: `i2s_dout=PIN_I2S_DIN`, `i2s_bclk=PIN_I2S_BCLK`, `i2s_lrc=PIN_I2S_LRCK`, configured via `amy_config_t` in `initI2S()` (`audio_engine.cpp`).
 
 **Encoder ISRs must be `IRAM_ATTR`** — both the dispatcher stubs (`isr_enc0/1`) and the shared helper (`isr_enc`) carry the attribute. Any function called from an ISR on ESP32-S3 must also be in IRAM or it will crash on cache miss.
 
@@ -60,20 +60,24 @@ Full table in `docs/pinout.md`. Critical constraints:
 - **GPIO 48** — onboard WS2812 RGB LED (use Adafruit NeoPixel, `NEO_GRB + NEO_KHZ800`)
 - **I2C for OLED SH1106** — SDA=GPIO 17, SCL=GPIO 18 (chosen during hardware bring-up)
 
-## ESP32Synth Notes
+## AMY Notes
 
-Library: `danilogcrf2-oss/ESP32Synth` v2.4.2. `MAX_VOICES` is defined as 80 in `ESP32Synth_Config.hpp`. **Do not redefine `MAX_VOICES` anywhere** — use `SEQ_TRACKS` (6) for our voice count. `struct Voice` is also defined by the library globally — never declare another `struct Voice`.
+Library: `shorepine/AMY` v1.2.7. AMY manages I2S internally and starts its own render thread on ESP32-S3. Call `amy_update()` in the audio task loop each iteration.
 
-DMA latency is configured via build flags in `platformio.ini`:
+**API pattern:**
+```cpp
+amy_event e = amy_default_event();
+e.osc       = voice;          // 0–5, maps to sequencer track
+e.midi_note = (float)note;    // native MIDI note number, no conversion
+e.velocity  = vel / 127.0f;   // 0.0 = note off, >0 = note on
+amy_add_event(&e);
 ```
--DSYNTH_DMA_BUF_LEN=128
--DSYNTH_DMA_BUF_COUNT=2
-```
-This gives ~5ms latency, suitable for a groovebox.
+
+AMY has no user `IRAM_ATTR` code — IRAM at 100% is entirely the ESP32 IDF framework overhead, not AMY. The linker succeeds; this is not an actionable problem.
 
 ## Platform
 
-Uses **pioarduino** (`platform-espressif32` fork) instead of the official Espressif PlatformIO platform, because ESP32Synth v2.4+ requires `driver/i2s_pdm.h` which is only available in ESP-IDF 5.x. The official platform was still on IDF 4.4 at time of setup.
+Uses **pioarduino** (`platform-espressif32` fork) instead of the official Espressif PlatformIO platform, because AMY requires ESP-IDF 5.x (`driver/i2s_pdm.h`). The official platform was still on IDF 4.4 at time of setup.
 
 Current: `pioarduino/platform-espressif32 55.03.39` → arduino-esp32 3.3.9 + IDF 5.5.4.
 
