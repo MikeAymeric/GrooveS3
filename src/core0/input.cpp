@@ -41,8 +41,8 @@ static const uint8_t kEncBtnPins[2] = { PIN_ENC1_BTN, PIN_ENC2_BTN };
 static void IRAM_ATTR isr_enc(int idx) {
     bool a = digitalRead(kEncAPins[idx]);
     bool b = digitalRead(kEncBPins[idx]);
-    if (a != b) sEnc[idx].position++;
-    else        sEnc[idx].position--;
+    if (a != b) sEnc[idx].position = sEnc[idx].position + 1;
+    else        sEnc[idx].position = sEnc[idx].position - 1;
 }
 
 static void IRAM_ATTR isr_enc0() { isr_enc(0); }

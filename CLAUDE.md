@@ -8,8 +8,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 # Build only
 pio run
 
-# Build + flash + open serial monitor
-pio run --target upload --target monitor
+# Build + flash
+pio run --target upload
+
+# Serial monitor only (run in an external WSL terminal — not Cursor's integrated terminal,
+# which fails with termios.error due to missing TTY)
+pio device monitor --port /dev/ttyACM0 --baud 115200
 
 # Clean build
 pio run --target clean
@@ -53,6 +57,8 @@ Full table in `docs/pinout.md`. Critical constraints:
 - **GPIO 19/20** — USB D−/D+
 - **GPIO 43/44** — UART0 (Serial monitor)
 - **ADC1 only** (GPIO 1–10) for potentiometers — ADC2 (GPIO 11–20) is unreliable with BT/WiFi
+- **GPIO 48** — onboard WS2812 RGB LED (use Adafruit NeoPixel, `NEO_GRB + NEO_KHZ800`)
+- **I2C for OLED SH1106** — SDA=GPIO 17, SCL=GPIO 18 (chosen during hardware bring-up)
 
 ## ESP32Synth Notes
 
