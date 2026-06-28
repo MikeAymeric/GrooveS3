@@ -46,10 +46,42 @@ HC595 OE → GND (always enabled). HC165 CLK_INH → GND.
 
 | GPIO | Signal | Notes |
 |------|--------|-------|
-| 41 | MIDI_TX | Via 220 Ω + 6N138 optocoupler to DIN OUT |
-| 42 | MIDI_RX | Via 6N138 optocoupler from DIN IN |
+| 41 | MIDI_TX | Via 220 Ω + 6N137 optocoupler to DIN OUT |
+| 42 | MIDI_RX | Via 6N137 optocoupler from DIN IN |
 
 Baud rate: 31250.
+
+### 6N137 wiring notes
+
+The 6N137 is **not pin-compatible** with 6N138. Key differences:
+
+- **Pin 2** — LED Anode (vs pin 1 on 6N138)
+- **Pin 3** — LED Cathode (vs pin 2 on 6N138)
+- **Pin 6** — VCC output side (must be connected to 3.3V)
+- **Pin 7** — Enable (active-high, must be pulled to VCC via 10 kΩ — leave floating = output always disabled)
+- **Pin 5** — Open-collector output (pull-up 10 kΩ to VCC)
+
+**MIDI TX circuit (GPIO 41 → DIN OUT pin 5):**
+```
+GPIO 41 → 220 Ω → 6N137 pin 2 (anode)
+6N137 pin 3 (cathode) → GND
+6N137 pin 4 → GND
+6N137 pin 6 (VCC) → 3.3V
+6N137 pin 7 (Enable) → 10 kΩ → 3.3V
+6N137 pin 5 (output) → 270 Ω → DIN OUT pin 5
+DIN OUT pin 2 → GND
+```
+
+**MIDI RX circuit (DIN IN → GPIO 42):**
+```
+DIN IN pin 5 → 220 Ω → 6N137 pin 2 (anode)
+DIN IN pin 4 → 6N137 pin 3 (cathode)
+1N4148 in antiparallelo tra pin 2 e pin 3 (protezione inversione)
+6N137 pin 4 → GND
+6N137 pin 6 (VCC) → 3.3V
+6N137 pin 7 (Enable) → 10 kΩ → 3.3V
+6N137 pin 5 (output) → 10 kΩ → 3.3V → GPIO 42
+```
 
 ---
 

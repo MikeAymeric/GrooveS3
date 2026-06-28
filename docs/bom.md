@@ -83,9 +83,9 @@ Prices are indicative (EUR, AliExpress/LCSC/Mouser). Quantities are per unit.
 | # | Component | Model | Qty | Unit Price | Notes |
 |---|-----------|-------|-----|-----------|-------|
 | 17 | DIN-5 socket | Female, PCB mount | 2 | €0.25 | MIDI IN + OUT |
-| 18 | Optocoupler | 6N138 | 2 | €0.35 | MIDI IN isolation |
-| 19 | Resistors | 220 Ω / 270 Ω | 4 | €0.02 | MIDI IN/OUT resistors per spec |
-| 20 | Diode | 1N4148 | 1 | €0.05 | MIDI IN protection |
+| 18 | Optocoupler | 6N137 | 2 | €0.35 | MIDI isolation (TX + RX) — note: pin 7 Enable must be tied to VCC |
+| 19 | Resistors | 220 Ω / 270 Ω / 10 kΩ | 8 | €0.02 | MIDI TX: 220 Ω serie LED + 270 Ω output; MIDI RX: 10 kΩ pull-up output + 10 kΩ Enable; x2 optocouplers |
+| 20 | Diode | 1N4148 | 1 | €0.05 | MIDI IN protection (antiparallelo LED) |
 
 ---
 
