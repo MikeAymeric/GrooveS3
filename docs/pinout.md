@@ -23,7 +23,7 @@ All GPIO assignments verified conflict-free. No ADC/Strapping/USB pin overlaps.
 | 39 | LRCK | Left/right word clock |
 | 40 | DIN  | Serial data to DAC |
 
-PCM5102A SCK → GND (auto-clock mode), FMT → GND (I2S format), XSMT → 3.3V (unmute).
+WCMCU-5102 pin names: SCL → GND (PLL mode), FMT → GND (I2S format), XMT → 3.3V (unmute), FLT → GND, DMP → GND. Usa il pin **3.3V** della board (non VCC). Jack TRS integrato sulla board.
 
 ---
 

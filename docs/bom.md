@@ -1,6 +1,6 @@
 # GrooveS3 — Bill of Materials
 
-Last updated: 2026-06-17
+Last updated: 2026-06-28
 
 Prices are indicative (EUR, AliExpress/LCSC/Mouser). Quantities are per unit.
 
@@ -18,9 +18,7 @@ Prices are indicative (EUR, AliExpress/LCSC/Mouser). Quantities are per unit.
 
 | # | Component | Model | Qty | Unit Price | Notes |
 |---|-----------|-------|-----|-----------|-------|
-| 2 | I2S DAC | PCM5102A module | 1 | €3.50 | 3.3V, I2S, 32-bit 384 kHz |
-| 3 | 3.5 mm stereo jack | PJ-320A | 1 | €0.15 | TRS output |
-| 4 | Electrolytic cap | 10 µF 16V | 2 | €0.05 | DC blocking on audio out |
+| 2 | I2S DAC | WCMCU-5102 (PCM5102A) | 1 | €3.50 | 3.3V, I2S, 32-bit 384 kHz — jack TRS e cap DC-block integrati sulla board |
 
 ---
 
