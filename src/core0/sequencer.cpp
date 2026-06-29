@@ -56,6 +56,7 @@ static uint32_t stepIntervalMs() {
 void seqInit() {
     for (int t = 0; t < SEQ_TRACKS; t++) {
         sTracks[t].note     = kDefaultNotes[t];
+        sTracks[t].is_pcm   = true;
         sTracks[t].velocity = 100;
         sTracks[t].channel  = (uint8_t)t;  // each track → unique voice (0-5)
         sTracks[t].midiLen  = 1;
@@ -105,6 +106,7 @@ void seqTask(void* /*arg*/) {
             xLastInputWake = xTaskGetTickCount();
             inputPoll();
             midiPoll();
+            gMasterVolume = inputGetPotNorm(1); // VOLUME
             uiUpdate();  // internally throttled to DISPLAY_FPS_MAX
 
             // Update LED strip to reflect current sequencer state
@@ -126,12 +128,15 @@ void seqTask(void* /*arg*/) {
             (xTaskGetTickCount() - xLastStepWake) >= pdMS_TO_TICKS(stepIntervalCached))
         {
             xLastStepWake = xTaskGetTickCount();
-
+            for (int t = 0; t < SEQ_TRACKS; t++) {
+                if (!sTracks[t].is_pcm) sendNote(t, false);
+            }
             for (int t = 0; t < SEQ_TRACKS; t++) {
                 if (sTracks[t].steps[sCurrentStep]) {
                     sendNote(t, true);
                 }
             }
+
             sCurrentStep = (sCurrentStep + 1) % SEQ_STEPS;
         } else if (!sPlaying) {
             xLastStepWake = xTaskGetTickCount();  // keep reference fresh while stopped

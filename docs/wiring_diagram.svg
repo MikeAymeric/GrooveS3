@@ -1,0 +1,336 @@
+<svg viewBox="0 0 1240 980" xmlns="http://www.w3.org/2000/svg" style="background:#fff;font-family:Arial,sans-serif">
+
+<!-- ══ TITLE ══ -->
+<rect x="0" y="0" width="1240" height="36" fill="#1a1a2e"/>
+<text x="620" y="23" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">GrooveS3 — Schema Cablaggio Completo · ESP32-S3 DevKitC-1 N16R8</text>
+
+<!-- ══ LEGEND ══ -->
+<rect x="990" y="44" width="240" height="130" rx="3" fill="#f7f7f7" stroke="#ccc" stroke-width="1"/>
+<text x="1000" y="60" font-size="10" font-weight="bold" fill="#333">Legenda bus</text>
+<line x1="1000" y1="68" x2="1030" y2="68" stroke="#9b59b6" stroke-width="2.5"/><text x="1036" y="72" font-size="9" fill="#333">I2C (SDA/SCL)</text>
+<line x1="1000" y1="84" x2="1030" y2="84" stroke="#2980b9" stroke-width="2.5"/><text x="1036" y="88" font-size="9" fill="#333">I2S (BCLK/LRCK/DIN)</text>
+<line x1="1000" y1="100" x2="1030" y2="100" stroke="#e67e22" stroke-width="2.5"/><text x="1036" y="104" font-size="9" fill="#333">SPI (MOSI/SCK/MISO/CS)</text>
+<line x1="1000" y1="116" x2="1030" y2="116" stroke="#27ae60" stroke-width="2.5"/><text x="1036" y="120" font-size="9" fill="#333">UART / MIDI</text>
+<line x1="1000" y1="132" x2="1030" y2="132" stroke="#e74c3c" stroke-width="2.5"/><text x="1036" y="136" font-size="9" fill="#333">ADC (potenziometri)</text>
+<line x1="1000" y1="148" x2="1030" y2="148" stroke="#7f8c8d" stroke-width="2.5"/><text x="1036" y="152" font-size="9" fill="#333">GPIO digitale</text>
+<line x1="1000" y1="164" x2="1030" y2="164" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4,2"/><text x="1036" y="168" font-size="9" fill="#333">3.3V · GND</text>
+
+<!-- ══════════════════════════════════════════
+     ESP32-S3 DevKitC-1 — BLOCCO CENTRALE
+══════════════════════════════════════════ -->
+<rect x="455" y="44" width="170" height="840" rx="6" fill="#eef3ff" stroke="#3a7abf" stroke-width="2"/>
+<text x="540" y="64" text-anchor="middle" font-size="11" font-weight="bold" fill="#1a4a7a">ESP32-S3</text>
+<text x="540" y="77" text-anchor="middle" font-size="8" fill="#3a7abf">DevKitC-1 N16R8</text>
+
+<!-- Left pins -->
+<circle cx="455" cy="96" r="4" fill="#e74c3c"/>
+<text x="450" y="100" text-anchor="end" font-size="9" fill="#c0392b">GPIO 1 · POT_BPM</text>
+
+<circle cx="455" cy="148" r="4" fill="#e74c3c"/>
+<text x="450" y="152" text-anchor="end" font-size="9" fill="#c0392b">GPIO 2 · POT_VOL</text>
+
+<circle cx="455" cy="200" r="4" fill="#e74c3c"/>
+<text x="450" y="204" text-anchor="end" font-size="9" fill="#c0392b">GPIO 4 · POT_PARAM</text>
+
+<circle cx="455" cy="252" r="4" fill="#7f8c8d"/>
+<text x="450" y="256" text-anchor="end" font-size="9" fill="#555">GPIO 5 · ENC1_A</text>
+
+<circle cx="455" cy="304" r="4" fill="#7f8c8d"/>
+<text x="450" y="308" text-anchor="end" font-size="9" fill="#555">GPIO 6 · ENC1_B</text>
+
+<circle cx="455" cy="356" r="4" fill="#7f8c8d"/>
+<text x="450" y="360" text-anchor="end" font-size="9" fill="#555">GPIO 7 · ENC1_BTN</text>
+
+<circle cx="455" cy="408" r="4" fill="#e67e22"/>
+<text x="450" y="412" text-anchor="end" font-size="9" fill="#b35a00">GPIO 8 · HC165_LOAD</text>
+
+<circle cx="455" cy="460" r="4" fill="#e67e22"/>
+<text x="450" y="464" text-anchor="end" font-size="9" fill="#b35a00">GPIO 9 · HC595_LATCH</text>
+
+<circle cx="455" cy="512" r="4" fill="#e67e22"/>
+<text x="450" y="516" text-anchor="end" font-size="9" fill="#b35a00">GPIO 10 · SD_CS</text>
+
+<circle cx="455" cy="564" r="4" fill="#e67e22"/>
+<text x="450" y="568" text-anchor="end" font-size="9" fill="#b35a00">GPIO 11 · MOSI</text>
+
+<circle cx="455" cy="616" r="4" fill="#e67e22"/>
+<text x="450" y="620" text-anchor="end" font-size="9" fill="#b35a00">GPIO 12 · SCK</text>
+
+<circle cx="455" cy="668" r="4" fill="#e67e22"/>
+<text x="450" y="672" text-anchor="end" font-size="9" fill="#b35a00">GPIO 13 · MISO</text>
+
+<circle cx="455" cy="720" r="4" fill="#9b59b6"/>
+<text x="450" y="724" text-anchor="end" font-size="9" fill="#7d3c98">GPIO 17 · SDA</text>
+
+<circle cx="455" cy="772" r="4" fill="#9b59b6"/>
+<text x="450" y="776" text-anchor="end" font-size="9" fill="#7d3c98">GPIO 18 · SCL</text>
+
+<circle cx="455" cy="824" r="4" fill="#333"/>
+<text x="450" y="828" text-anchor="end" font-size="9" fill="#333">GND</text>
+
+<!-- Right pins -->
+<circle cx="625" cy="96" r="4" fill="#7f8c8d"/>
+<text x="630" y="100" font-size="9" fill="#555">GPIO 14 · ENC2_A</text>
+
+<circle cx="625" cy="148" r="4" fill="#7f8c8d"/>
+<text x="630" y="152" font-size="9" fill="#555">GPIO 15 · ENC2_B</text>
+
+<circle cx="625" cy="200" r="4" fill="#7f8c8d"/>
+<text x="630" y="204" font-size="9" fill="#555">GPIO 16 · ENC2_BTN</text>
+
+<circle cx="625" cy="252" r="4" fill="#7f8c8d"/>
+<text x="630" y="256" font-size="9" fill="#555">GPIO 21 · SHIFT_BTN</text>
+
+<circle cx="625" cy="304" r="4" fill="#2980b9"/>
+<text x="630" y="308" font-size="9" fill="#1a6090">GPIO 38 · BCLK</text>
+
+<circle cx="625" cy="356" r="4" fill="#2980b9"/>
+<text x="630" y="360" font-size="9" fill="#1a6090">GPIO 39 · LRCK</text>
+
+<circle cx="625" cy="408" r="4" fill="#2980b9"/>
+<text x="630" y="412" font-size="9" fill="#1a6090">GPIO 40 · DIN</text>
+
+<circle cx="625" cy="460" r="4" fill="#27ae60"/>
+<text x="630" y="464" font-size="9" fill="#1a7a42">GPIO 41 · MIDI_TX</text>
+
+<circle cx="625" cy="512" r="4" fill="#27ae60"/>
+<text x="630" y="516" font-size="9" fill="#1a7a42">GPIO 42 · MIDI_RX</text>
+
+<circle cx="625" cy="564" r="4" fill="#c0392b"/>
+<text x="630" y="568" font-size="9" fill="#c0392b">3.3V</text>
+
+<circle cx="625" cy="616" r="4" fill="#333"/>
+<text x="630" y="620" font-size="9" fill="#333">GND</text>
+
+<text x="630" y="672" font-size="8" fill="#bbb">GPIO 35/36/37 — PSRAM (riservati)</text>
+<text x="630" y="688" font-size="8" fill="#bbb">GPIO 19/20 — USB D-/D+</text>
+<text x="630" y="704" font-size="8" fill="#bbb">GPIO 43/44 — UART0 Serial</text>
+<text x="630" y="720" font-size="8" fill="#aaa">GPIO 47 — SPARE</text>
+
+<!-- ══════════════════════════════════════════
+     LEFT SIDE PERIPHERALS
+══════════════════════════════════════════ -->
+
+<!-- ── POTENTIOMETERS ── -->
+<rect x="20" y="68" width="150" height="155" rx="4" fill="#fff5f5" stroke="#e74c3c" stroke-width="1.5"/>
+<text x="95" y="84" text-anchor="middle" font-size="10" font-weight="bold" fill="#c0392b">Potenziometri</text>
+<text x="95" y="96" text-anchor="middle" font-size="8" fill="#c0392b">Alpha RD901F 10 kΩ</text>
+<rect x="30" y="100" width="110" height="28" rx="3" fill="#fde8e8" stroke="#e74c3c" stroke-width="1"/>
+<text x="85" y="113" text-anchor="middle" font-size="9" fill="#a00">POT_BPM</text>
+<text x="85" y="124" text-anchor="middle" font-size="8" fill="#555">40–200 BPM</text>
+<rect x="30" y="134" width="110" height="28" rx="3" fill="#fde8e8" stroke="#e74c3c" stroke-width="1"/>
+<text x="85" y="147" text-anchor="middle" font-size="9" fill="#a00">POT_VOL</text>
+<text x="85" y="158" text-anchor="middle" font-size="8" fill="#555">Volume master</text>
+<rect x="30" y="168" width="110" height="28" rx="3" fill="#fde8e8" stroke="#e74c3c" stroke-width="1"/>
+<text x="85" y="181" text-anchor="middle" font-size="9" fill="#a00">POT_PARAM</text>
+<text x="85" y="192" text-anchor="middle" font-size="8" fill="#555">Param generico</text>
+<text x="30" y="216" font-size="7" fill="#888">CW→3.3V · CCW→GND · 100nF cap wiper-GND</text>
+
+<!-- Wires POTs → ESP32 -->
+<line x1="140" y1="114" x2="455" y2="96" stroke="#e74c3c" stroke-width="1.5"/>
+<line x1="140" y1="148" x2="455" y2="148" stroke="#e74c3c" stroke-width="1.5"/>
+<line x1="140" y1="182" x2="455" y2="200" stroke="#e74c3c" stroke-width="1.5"/>
+
+<!-- ── ENCODER 1 ── -->
+<rect x="20" y="232" width="150" height="140" rx="4" fill="#f7f7f7" stroke="#7f8c8d" stroke-width="1.5"/>
+<text x="95" y="248" text-anchor="middle" font-size="10" font-weight="bold" fill="#444">Encoder 1 — ENC1</text>
+<text x="95" y="260" text-anchor="middle" font-size="8" fill="#666">ALPS EC11 · track/pattern</text>
+<text x="30" y="278" font-size="9" fill="#333">A   → GPIO 5</text>
+<text x="30" y="292" font-size="9" fill="#333">B   → GPIO 6</text>
+<text x="30" y="306" font-size="9" fill="#333">BTN → GPIO 7</text>
+<text x="30" y="320" font-size="8" fill="#888">COM → GND</text>
+<text x="30" y="334" font-size="7" fill="#aaa">A,B: 10kΩ pull-up · BTN: INPUT_PULLUP</text>
+<text x="30" y="346" font-size="7" fill="#aaa">ISR IRAM_ATTR richiesto</text>
+<text x="30" y="358" font-size="7" fill="#aaa">Delta protetto portDISABLE_IRQ</text>
+
+<!-- Wires ENC1 → ESP32 -->
+<line x1="140" y1="275" x2="455" y2="252" stroke="#7f8c8d" stroke-width="1.5"/>
+<line x1="140" y1="289" x2="455" y2="304" stroke="#7f8c8d" stroke-width="1.5"/>
+<line x1="140" y1="303" x2="455" y2="356" stroke="#7f8c8d" stroke-width="1.5"/>
+
+<!-- ── SPI BUS GROUP ── -->
+<rect x="20" y="385" width="150" height="22" rx="2" fill="#e67e22"/>
+<text x="95" y="400" text-anchor="middle" font-size="9" font-weight="bold" fill="#fff">BUS SPI — condiviso</text>
+
+<!-- SPI rail bar at x=175 -->
+<line x1="175" y1="406" x2="175" y2="675" stroke="#e67e22" stroke-width="3"/>
+<line x1="170" y1="408" x2="180" y2="408" stroke="#e67e22" stroke-width="2"/>
+<line x1="170" y1="460" x2="180" y2="460" stroke="#e67e22" stroke-width="2"/>
+<line x1="170" y1="512" x2="180" y2="512" stroke="#e67e22" stroke-width="2"/>
+<line x1="170" y1="564" x2="180" y2="564" stroke="#e67e22" stroke-width="2"/>
+<line x1="170" y1="616" x2="180" y2="616" stroke="#e67e22" stroke-width="2"/>
+<line x1="170" y1="668" x2="180" y2="668" stroke="#e67e22" stroke-width="2"/>
+
+<!-- Wires SPI signals → ESP32 -->
+<line x1="195" y1="408" x2="455" y2="408" stroke="#e67e22" stroke-width="1.5"/>
+<line x1="195" y1="460" x2="455" y2="460" stroke="#e67e22" stroke-width="1.5"/>
+<line x1="195" y1="512" x2="455" y2="512" stroke="#e67e22" stroke-width="1.5"/>
+<line x1="175" y1="564" x2="455" y2="564" stroke="#e67e22" stroke-width="1.5"/>
+<line x1="175" y1="616" x2="455" y2="616" stroke="#e67e22" stroke-width="1.5"/>
+<line x1="175" y1="668" x2="455" y2="668" stroke="#e67e22" stroke-width="1.5"/>
+
+<!-- ── MicroSD Card ── -->
+<rect x="20" y="408" width="150" height="72" rx="4" fill="#fff8ee" stroke="#e67e22" stroke-width="1.5"/>
+<text x="95" y="424" text-anchor="middle" font-size="9" font-weight="bold" fill="#b35a00">MicroSD (SPI)</text>
+<text x="30" y="440" font-size="8" fill="#555">CS   ← GPIO 10</text>
+<text x="30" y="452" font-size="8" fill="#555">MOSI ← GPIO 11</text>
+<text x="30" y="464" font-size="8" fill="#555">SCK  ← GPIO 12</text>
+<text x="30" y="476" font-size="8" fill="#555">MISO → GPIO 13</text>
+
+<!-- ── 74HC595 ── -->
+<rect x="20" y="492" width="150" height="80" rx="4" fill="#fff8ee" stroke="#e67e22" stroke-width="1.5"/>
+<text x="95" y="508" text-anchor="middle" font-size="9" font-weight="bold" fill="#b35a00">74HC595 ×2</text>
+<text x="95" y="520" text-anchor="middle" font-size="8" fill="#888">Step LED (16 uscite)</text>
+<text x="30" y="534" font-size="8" fill="#555">RCLK ← GPIO 9 (LATCH)</text>
+<text x="30" y="546" font-size="8" fill="#555">SRCLK← GPIO 12 (SCK)</text>
+<text x="30" y="558" font-size="8" fill="#555">SER  ← GPIO 11 (MOSI)</text>
+<text x="30" y="570" font-size="8" fill="#888">OE→GND · SRCLR→3.3V</text>
+
+<!-- ── 74HC165 ── -->
+<rect x="20" y="586" width="150" height="88" rx="4" fill="#fff8ee" stroke="#e67e22" stroke-width="1.5"/>
+<text x="95" y="602" text-anchor="middle" font-size="9" font-weight="bold" fill="#b35a00">74HC165 ×2</text>
+<text x="95" y="614" text-anchor="middle" font-size="8" fill="#888">16 step + 4 func buttons</text>
+<text x="30" y="628" font-size="8" fill="#555">SH/LD ← GPIO 8 (LOAD)</text>
+<text x="30" y="640" font-size="8" fill="#555">CLK   ← GPIO 12 (SCK)</text>
+<text x="30" y="652" font-size="8" fill="#555">QH    → GPIO 13 (MISO)</text>
+<text x="30" y="664" font-size="8" fill="#888">CLK_INH→GND</text>
+
+<!-- ── OLED SH1106 ── -->
+<rect x="20" y="700" width="150" height="88" rx="4" fill="#f5eeff" stroke="#9b59b6" stroke-width="1.5"/>
+<text x="95" y="716" text-anchor="middle" font-size="9" font-weight="bold" fill="#7d3c98">SH1106 OLED 128×64</text>
+<text x="95" y="728" text-anchor="middle" font-size="8" fill="#7d3c98">I2C · 1.3"</text>
+<text x="30" y="744" font-size="8" fill="#555">SDA ← GPIO 17</text>
+<text x="30" y="756" font-size="8" fill="#555">SCL ← GPIO 18</text>
+<text x="30" y="768" font-size="8" fill="#555">VCC → 3.3V</text>
+<text x="30" y="780" font-size="8" fill="#888">4.7kΩ pull-up su SDA e SCL</text>
+
+<!-- Wires OLED → ESP32 -->
+<line x1="170" y1="744" x2="455" y2="720" stroke="#9b59b6" stroke-width="1.5"/>
+<line x1="170" y1="756" x2="455" y2="772" stroke="#9b59b6" stroke-width="1.5"/>
+
+<!-- ══════════════════════════════════════════
+     RIGHT SIDE PERIPHERALS
+══════════════════════════════════════════ -->
+
+<!-- ── ENCODER 2 ── -->
+<rect x="820" y="68" width="150" height="148" rx="4" fill="#f7f7f7" stroke="#7f8c8d" stroke-width="1.5"/>
+<text x="895" y="84" text-anchor="middle" font-size="10" font-weight="bold" fill="#444">Encoder 2 — ENC2</text>
+<text x="895" y="96" text-anchor="middle" font-size="8" fill="#666">ALPS EC11 · valore/step</text>
+<text x="830" y="114" font-size="9" fill="#333">A   → GPIO 14</text>
+<text x="830" y="128" font-size="9" fill="#333">B   → GPIO 15</text>
+<text x="830" y="142" font-size="9" fill="#333">BTN → GPIO 16</text>
+<text x="830" y="156" font-size="8" fill="#888">COM → GND</text>
+<text x="830" y="170" font-size="7" fill="#aaa">A,B: 10kΩ pull-up a 3.3V</text>
+<text x="830" y="182" font-size="7" fill="#aaa">ISR IRAM_ATTR — IRAM obbligatorio</text>
+<text x="830" y="194" font-size="7" fill="#aaa">BTN: INPUT_PULLUP interno</text>
+
+<!-- Wires ENC2 → ESP32 -->
+<line x1="820" y1="111" x2="625" y2="96" stroke="#7f8c8d" stroke-width="1.5"/>
+<line x1="820" y1="125" x2="625" y2="148" stroke="#7f8c8d" stroke-width="1.5"/>
+<line x1="820" y1="139" x2="625" y2="200" stroke="#7f8c8d" stroke-width="1.5"/>
+
+<!-- ── SHIFT BUTTON ── -->
+<rect x="820" y="232" width="150" height="52" rx="4" fill="#f7f7f7" stroke="#7f8c8d" stroke-width="1.5"/>
+<text x="895" y="248" text-anchor="middle" font-size="9" font-weight="bold" fill="#444">SHIFT Button</text>
+<text x="830" y="264" font-size="9" fill="#333">BTN → GPIO 21</text>
+<text x="830" y="276" font-size="8" fill="#888">altro terminale → GND · INPUT_PULLUP</text>
+
+<!-- Wire SHIFT → ESP32 -->
+<line x1="820" y1="258" x2="625" y2="252" stroke="#7f8c8d" stroke-width="1.5"/>
+
+<!-- ── PCM5102A DAC ── -->
+<rect x="820" y="300" width="150" height="130" rx="4" fill="#eef6ff" stroke="#2980b9" stroke-width="1.5"/>
+<text x="895" y="316" text-anchor="middle" font-size="9" font-weight="bold" fill="#1a6090">PCM5102A DAC</text>
+<text x="895" y="328" text-anchor="middle" font-size="8" fill="#1a6090">I2S · 32-bit · 384 kHz</text>
+<text x="830" y="346" font-size="8" fill="#555">BCK  ← GPIO 38 (BCLK)</text>
+<text x="830" y="358" font-size="8" fill="#555">LRCK ← GPIO 39</text>
+<text x="830" y="370" font-size="8" fill="#555">DIN  ← GPIO 40</text>
+<text x="830" y="384" font-size="8" fill="#555">VCC  → 3.3V · GND</text>
+<text x="830" y="396" font-size="7" fill="#888">SCK→GND (auto-clock)</text>
+<text x="830" y="408" font-size="7" fill="#888">FMT→GND · XSMT→3.3V</text>
+<text x="830" y="420" font-size="7" fill="#888">OUT→10µF(DC block)→Jack TRS</text>
+
+<!-- Wires PCM5102A → ESP32 -->
+<line x1="820" y1="343" x2="625" y2="304" stroke="#2980b9" stroke-width="1.5"/>
+<line x1="820" y1="355" x2="625" y2="356" stroke="#2980b9" stroke-width="1.5"/>
+<line x1="820" y1="367" x2="625" y2="408" stroke="#2980b9" stroke-width="1.5"/>
+
+<!-- 3.5mm Jack -->
+<rect x="985" y="326" width="80" height="50" rx="4" fill="#e8ffe8" stroke="#2a7a2a" stroke-width="1.5"/>
+<text x="1025" y="342" text-anchor="middle" font-size="9" font-weight="bold" fill="#1a4a1a">Jack TRS</text>
+<text x="1025" y="354" text-anchor="middle" font-size="8" fill="#1a4a1a">3.5 mm stereo</text>
+<text x="1025" y="366" text-anchor="middle" font-size="7" fill="#888">PJ-320A</text>
+<line x1="970" y1="351" x2="985" y2="351" stroke="#2980b9" stroke-width="1.5"/>
+<text x="960" y="354" text-anchor="end" font-size="7" fill="#888">L+R</text>
+
+<!-- ── MIDI TX ── -->
+<rect x="820" y="446" width="150" height="140" rx="4" fill="#efffef" stroke="#27ae60" stroke-width="1.5"/>
+<text x="895" y="462" text-anchor="middle" font-size="9" font-weight="bold" fill="#1a7a42">MIDI OUT (TX)</text>
+<text x="895" y="474" text-anchor="middle" font-size="8" fill="#27ae60">6N137 optocoupler</text>
+<text x="830" y="490" font-size="8" fill="#555">GPIO 41 → 220Ω → pin 2 (A)</text>
+<text x="830" y="502" font-size="8" fill="#555">pin 3 (K) → GND</text>
+<text x="830" y="514" font-size="8" fill="#555">pin 4 (GND) → GND</text>
+<text x="830" y="526" font-size="8" fill="#c0392b" font-weight="bold">pin 6 (VCC) → 3.3V</text>
+<text x="830" y="538" font-size="8" fill="#c0392b" font-weight="bold">pin 7 (EN) → 10kΩ → 3.3V ⚠</text>
+<text x="830" y="550" font-size="8" fill="#555">pin 5 (OUT) → 270Ω → DIN5 pin5</text>
+<text x="830" y="562" font-size="8" fill="#888">DIN5 pin2 → GND</text>
+<text x="830" y="576" font-size="7" fill="#aaa">baud: 31250</text>
+
+<!-- Wire MIDI TX → ESP32 -->
+<line x1="820" y1="490" x2="625" y2="460" stroke="#27ae60" stroke-width="1.5"/>
+
+<!-- DIN OUT socket -->
+<rect x="985" y="470" width="70" height="50" rx="4" fill="#e8ffe8" stroke="#2a7a2a" stroke-width="1.5"/>
+<text x="1020" y="486" text-anchor="middle" font-size="9" font-weight="bold" fill="#1a4a1a">DIN OUT</text>
+<text x="1020" y="498" text-anchor="middle" font-size="8" fill="#555">5-pin</text>
+<text x="1020" y="510" text-anchor="middle" font-size="7" fill="#888">p2=GND p5=SIG</text>
+<line x1="970" y1="490" x2="985" y2="490" stroke="#27ae60" stroke-width="1.5"/>
+
+<!-- ── MIDI RX ── -->
+<rect x="820" y="604" width="150" height="152" rx="4" fill="#efffef" stroke="#27ae60" stroke-width="1.5"/>
+<text x="895" y="620" text-anchor="middle" font-size="9" font-weight="bold" fill="#1a7a42">MIDI IN (RX)</text>
+<text x="895" y="632" text-anchor="middle" font-size="8" fill="#27ae60">6N137 optocoupler</text>
+<text x="830" y="648" font-size="8" fill="#555">DIN5 p5 → 220Ω → pin 2 (A)</text>
+<text x="830" y="660" font-size="8" fill="#555">DIN5 p4 → pin 3 (K)</text>
+<text x="830" y="672" font-size="8" fill="#888">1N4148 antiprl. su pin 2-3</text>
+<text x="830" y="684" font-size="8" fill="#555">pin 4 (GND) → GND</text>
+<text x="830" y="696" font-size="8" fill="#c0392b" font-weight="bold">pin 6 (VCC) → 3.3V</text>
+<text x="830" y="708" font-size="8" fill="#c0392b" font-weight="bold">pin 7 (EN) → 10kΩ → 3.3V ⚠</text>
+<text x="830" y="720" font-size="8" fill="#555">pin 5 (OUT) → 10kΩ → 3.3V</text>
+<text x="830" y="732" font-size="8" fill="#555">             → GPIO 42</text>
+<text x="830" y="746" font-size="7" fill="#aaa">baud: 31250</text>
+
+<!-- Wire MIDI RX → ESP32 -->
+<line x1="820" y1="728" x2="625" y2="512" stroke="#27ae60" stroke-width="1.5"/>
+
+<!-- DIN IN socket -->
+<rect x="985" y="630" width="70" height="50" rx="4" fill="#e8ffe8" stroke="#2a7a2a" stroke-width="1.5"/>
+<text x="1020" y="646" text-anchor="middle" font-size="9" font-weight="bold" fill="#1a4a1a">DIN IN</text>
+<text x="1020" y="658" text-anchor="middle" font-size="8" fill="#555">5-pin</text>
+<text x="1020" y="670" text-anchor="middle" font-size="7" fill="#888">p4=REF p5=SIG</text>
+<line x1="970" y1="646" x2="985" y2="646" stroke="#27ae60" stroke-width="1.5"/>
+
+<!-- ══════════════════════════════════════════
+     POWER DISTRIBUTION
+══════════════════════════════════════════ -->
+<rect x="20" y="807" width="410" height="70" rx="4" fill="#fff5f5" stroke="#c0392b" stroke-width="1.5"/>
+<text x="225" y="822" text-anchor="middle" font-size="9" font-weight="bold" fill="#c0392b">Alimentazione</text>
+<text x="30" y="838" font-size="8" fill="#555">USB-C 5V → AMS1117-3.3 → 3.3V rail</text>
+<text x="30" y="850" font-size="8" fill="#555">100 nF ceramic cap per ogni IC (pin VCC → GND, più vicino possibile)</text>
+<text x="30" y="862" font-size="8" fill="#555">100 µF bulk cap sulla rail 3.3V  ·  ESP32 GND: pin GND sinistro</text>
+<line x1="430" y1="840" x2="455" y2="824" stroke="#333" stroke-width="1.5" stroke-dasharray="4,2"/>
+
+<!-- ══════════════════════════════════════════
+     STEP BUTTONS & LEDS NOTE
+══════════════════════════════════════════ -->
+<rect x="460" y="895" width="550" height="75" rx="4" fill="#fff8ee" stroke="#e67e22" stroke-width="1.5"/>
+<text x="735" y="912" text-anchor="middle" font-size="9" font-weight="bold" fill="#b35a00">Step Buttons &amp; LED — tramite Shift Register SPI</text>
+<text x="470" y="928" font-size="8" fill="#555">16 LED:     HC595 Q0–Q7 (#1) + Q0–Q7 (#2) → 220Ω → LED → GND.  QH' di #1 → SER di #2 (cascade)</text>
+<text x="470" y="942" font-size="8" fill="#555">16+4 BTN: HC165 input A–H (#1/2) → pulsante → GND.  Pull-up 10kΩ esterno su ogni input HC165</text>
+<text x="470" y="956" font-size="8" fill="#555">HC595/HC165 accesso protetto da gSpiMutex (FreeRTOS) — creato in samplePlayerInit(), Core 1</text>
+
+<!-- ══ FOOTER ══ -->
+<line x1="0" y1="972" x2="1240" y2="972" stroke="#ccc" stroke-width="1"/>
+<text x="620" y="987" text-anchor="middle" font-size="8" fill="#aaa">GrooveS3 · docs/wiring.md · GPIO usati: 24/45 · ESP32Synth v2.4.1 · MAX_VOICES=80 · SEQ_TRACKS=6 · FreeRTOS dual-core</text>
+
+</svg>

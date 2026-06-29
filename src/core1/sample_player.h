@@ -1,7 +1,7 @@
 #pragma once
 
-#include <ESP32Synth.h>
 #include "../shared/config.h"   // SEQ_TRACKS = 6
+#include <Arduino.h>
 
 // ============================================================
 // GrooveS3 — PCM sample player (Core 1)
@@ -15,4 +15,4 @@
 void samplePlayerInit();
 void samplePlayerLoad(uint8_t voice, const char* path);  // load WAV from SD
 void samplePlayerTrigger(uint8_t voice, uint8_t velocity);
-void samplePlayerProcess(ESP32Synth* synth);             // mix into synth buffer
+void samplePlayerProcess();             // mix into synth buffer

@@ -68,7 +68,7 @@ void samplePlayerLoad(uint8_t voice, const char* path) {
         return;
     }
 
-    FsFile f = sSD.open(path, FILE_READ);
+    FsFile f = sSD.open(path, O_RDONLY);
     xSemaphoreGive(gSpiMutex);
 
     if (!f) {
@@ -120,7 +120,7 @@ void samplePlayerTrigger(uint8_t voice, uint8_t /*velocity*/) {
     sVoices[voice].playing = true;
 }
 
-void samplePlayerProcess(ESP32Synth* /*synth*/) {
+void samplePlayerProcess() {
     // TODO Phase 2: integrate with ESP32Synth mixing pipeline.
     for (int v = 0; v < SEQ_TRACKS; v++) {
         if (!sVoices[v].playing || !sVoices[v].buffer) continue;
