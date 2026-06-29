@@ -54,6 +54,16 @@ static void dispatchMidi(const MidiMessage& msg) {
 
 void audioEngineInit() {
     initI2S();
+    amy_event e = amy_default_event();
+    e.osc = 0;
+    e.wave = PCM;
+    e.preset = 1;
+    amy_add_event(&e);
+    e = amy_default_event();
+    e.osc = 1;
+    e.wave = PCM;
+    e.preset = 2;
+    amy_add_event(&e);
     samplePlayerInit();
 }
 
@@ -66,6 +76,14 @@ void audioEngineTask(void* /*arg*/) {
             dispatchMidi(msg);
         }
         amy_update();
+        static float sPrevVolume = 1.0f;
+        float vol = gMasterVolume;
+        if (vol != sPrevVolume) {
+            sPrevVolume = vol;
+            amy_event ve = amy_default_event();
+            ve.volume[0] = vol;
+            amy_add_event(&ve);
+        }
         vTaskDelay(pdMS_TO_TICKS(1));
     }   
 }

@@ -15,6 +15,7 @@
 // Inter-core queue (defined here, extern in midi_message.h)
 // ============================================================
 QueueHandle_t gMidiQueue = nullptr;
+volatile float gMasterVolume = 1.0f;
 
 // ============================================================
 // Core 0 task: sequencer + input + UI + MIDI I/O

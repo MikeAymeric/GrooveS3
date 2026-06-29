@@ -10,6 +10,7 @@
 
 struct Track {
     bool    steps[SEQ_STEPS];   // true = step active
+    bool    is_pcm;             // true = track is playing PCM samples
     uint8_t note;               // MIDI note number for this track
     uint8_t velocity;           // default note velocity
     uint8_t channel;            // MIDI channel (0-based)

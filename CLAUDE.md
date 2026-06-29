@@ -42,6 +42,10 @@ Core 1 — taskAudio (priority 2, stack 16384)
 
 **AMY is voice-based, not MIDI-channel-based.** `amy_add_event(&e)` with `e.osc = voice` and `e.midi_note` (native MIDI note number, no conversion needed). Each of the 6 sequencer tracks maps to a unique voice index via `sTracks[t].channel = t` set in `seqInit()`.
 
+**PCM drum voices must be configured once at init, then triggered with velocity only.** In `audioEngineInit()`, set `e.wave = PCM` and `e.preset = N` for each drum oscillator (preset 1 = 808 kick on osc 0, preset 2 = snare on osc 1). After that, trigger with `e.velocity > 0` only — never send velocity=0 (NOTE_OFF) to PCM voices, as it cuts the sample before it finishes. The `is_pcm` flag in the `Track` struct marks which tracks skip NOTE_OFF in the step clock loop.
+
+**`gMasterVolume` is a volatile float shared between cores** — defined in `main.cpp`, declared extern in `config.h`. Core 0 writes it from the volume pot every 5ms; Core 1 reads it in `audioEngineTask()` and pushes changes to AMY via `e.volume[0] = vol`. A single float read/write on Xtensa is atomic enough for continuous control data (no queue needed). A `fabsf` dead-band of 0.01f filters ADC noise before updating AMY.
+
 **SPI bus is shared between two cores.** HC165/HC595 (Core 0, input.cpp) and SD card (Core 1, sample_player.cpp) both use SPI. Access is serialised via `gSpiMutex` (defined in `sample_player.cpp`, extern in `input.cpp`). The mutex is created in `samplePlayerInit()` — HC165/HC595 functions guard on `gSpiMutex != nullptr` and skip silently if called before it exists.
 
 **AMY audio output requires the PCM5102A DAC** — AMY uses I2S and has no PWM fallback mode. Without the DAC, there is no audio output. Pins: `i2s_dout=PIN_I2S_DIN`, `i2s_bclk=PIN_I2S_BCLK`, `i2s_lrc=PIN_I2S_LRCK`, configured via `amy_config_t` in `initI2S()` (`audio_engine.cpp`).

@@ -43,3 +43,6 @@
 // --- Task priorities ---
 #define TASK_SEQUENCER_PRIORITY  1
 #define TASK_AUDIO_PRIORITY      2
+
+// --- Global variables ---
+extern volatile float gMasterVolume;

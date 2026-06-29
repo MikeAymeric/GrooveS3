@@ -58,6 +58,25 @@ static void drawTrack() {
     sDisplay.print(seqGetActiveTrack() + 1);
 }
 
+static void drawVolume() {
+    static float sPrevVol = -1.0f;
+    static uint32_t sVolChangedMs = 0;
+    float vol = gMasterVolume;
+    int barW = (int)(vol * (DISPLAY_WIDTH - 9));
+    if (fabsf(vol - sPrevVol) > 0.01f) {
+        sPrevVol = vol;
+        sVolChangedMs = millis();
+    }
+    if ((millis() - sVolChangedMs) < 3000) {
+        sDisplay.fillRect(1, 58, 2, 3, SH110X_WHITE);   // corpo speaker
+        sDisplay.drawLine(3, 58, 6, 56, SH110X_WHITE);   // cono alto
+        sDisplay.drawLine(3, 60, 6, 62, SH110X_WHITE);   // cono basso
+        sDisplay.drawLine(6, 56, 6, 62, SH110X_WHITE);   // cono destra
+        sDisplay.drawRect(9, 56, DISPLAY_WIDTH - 9, 7, SH110X_WHITE);
+        sDisplay.fillRect(9, 56, barW, 7 ,SH110X_WHITE);
+    }
+}
+
 static void drawSteps() {
     uint8_t activeTrack = seqGetActiveTrack();
     uint8_t currentStep = seqGetCurrentStep();
@@ -119,5 +138,6 @@ void uiUpdate() {
     drawBpm();
     drawTrack();
     drawSteps();
+    drawVolume();
     sDisplay.display();
 }
