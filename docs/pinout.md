@@ -87,13 +87,16 @@ DIN IN pin 4 → 6N137 pin 3 (cathode)
 
 ## ADC — Potentiometers (Alpha RD901F 10 kΩ)
 
-| GPIO | Signal | Range |
+| GPIO | Signal | Notes |
 |------|--------|-------|
-| 1 | POT_BPM   | 40–200 BPM |
-| 2 | POT_VOL   | Master volume 0–100% |
-| 4 | POT_PARAM | Generic parameter |
+| 1 | POT_1 | Page-dependent function |
+| 2 | POT_2 | Page-dependent function |
+| 3 | POT_3 | Page-dependent function |
+| 4 | POT_4 | Page-dependent function |
 
 Wiper to GPIO; other terminals to 3.3V and GND. 100 nF cap wiper-to-GND recommended for noise.
+
+Each pot has two functions per page (normal + SHIFT held), across 4 pages (PLAY / SOUND / FX / PATTERN) = 32 total assignable functions. Page cycled via SHIFT+ENC2. See UI design session for final mapping.
 
 ---
 
