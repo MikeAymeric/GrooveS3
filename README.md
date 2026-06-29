@@ -1,7 +1,8 @@
 # GrooveS3
 
-A DIY groovebox built around the **ESP32-S3 DevKitC-1 N16R8**.  
-16-step, 6-track step sequencer with polyphonic synth engine, PCM sample playback from SD, MIDI DIN I/O, and a 128×64 OLED interface.
+An open source, DIY alternative to the Teenage Engineering OP-1 — a full-featured groovebox built around the **ESP32-S3 DevKitC-1 N16R8**, designed to be assembled for under €50 in components.
+
+16-step, 6-track step sequencer with AMY polyphonic synth engine (FM, PCM, wavetable, Karplus-Strong), PCM sample playback from SD, MIDI DIN I/O, and a 128×64 OLED interface inspired by the OP-1 UI paradigm.
 
 ---
 
@@ -10,14 +11,14 @@ A DIY groovebox built around the **ESP32-S3 DevKitC-1 N16R8**.
 | Subsystem | Component |
 |-----------|-----------|
 | MCU | ESP32-S3 DevKitC-1 N16R8 (16 MB Flash, 8 MB PSRAM) |
-| Audio DAC | PCM5102A via I2S |
+| Audio DAC | PCM5102A (WCMCU-5102 module) via I2S |
 | Display | SH1106 128×64 OLED via I2C |
 | Storage | MicroSD via SPI |
 | Step buttons (in) | 74HC165 shift register × 2 (16 steps + 4 function) |
 | Step LEDs (out) | 74HC595 shift register × 2 (16 LEDs) |
-| Navigation | 2× ALPS EC11 rotary encoder with push |
-| Control | 3× Alpha RD901F 10 kΩ potentiometer |
-| MIDI | DIN 5-pin IN/OUT via UART1 (6N138 optocoupler) |
+| Navigation | 2× rotary encoder with push |
+| Control | 5× 10 kΩ potentiometer |
+| MIDI | DIN 5-pin IN/OUT via UART1 (6N137 optocoupler) |
 
 Full GPIO table: [docs/pinout.md](docs/pinout.md)  
 Bill of materials: [docs/bom.md](docs/bom.md)
@@ -92,8 +93,11 @@ GrooveS3/
 # Install dependencies and build
 pio run
 
-# Flash and open monitor
-pio run --target upload --target monitor
+# Flash
+pio run --target upload
+
+# Serial monitor (run in an external terminal, not Cursor's integrated terminal)
+pio device monitor --port /dev/ttyACM0 --baud 115200
 ```
 
 ### SD card
@@ -115,29 +119,56 @@ Create a `/samples/` folder and place WAV files (16-bit PCM, 44100 Hz, mono or s
 
 ## Roadmap
 
-### Phase 1 — Audio POC
+### Phase 1 — Audio + display core ✓
 - [x] Project scaffold and pinout
-- [x] AMY synthesizer on Core 1, inter-core queue (MidiMessage), dual-core FreeRTOS architecture
-- [x] SD card mount and WAV loading into PSRAM (6 default samples)
-- [ ] First audio test: AMY → I2S → PCM5102A DAC (hardware pending)
+- [x] AMY synthesizer on Core 1, inter-core queue, dual-core FreeRTOS architecture
+- [x] PCM drum voices (808 kick + snare via AMY presets)
+- [x] I2S → PCM5102A DAC — tested and working
+- [x] SH1106 OLED — step grid, BPM, track, volume bar with speaker icon
+- [x] BPM potentiometer (GPIO1, 40–200 BPM)
+- [x] Volume potentiometer (GPIO2, AMY master volume)
+- [x] Encoder navigation: track select + play/stop toggle
 
-### Phase 2 — Sequencer + UI
-- [ ] 16-step sequencer with BPM clock on Core 0
-- [ ] HC165 step button input + HC595 LED output
-- [ ] OLED UI: step grid, BPM, active track
-- [ ] Encoder navigation (track select, play/stop)
-- [ ] Potentiometer BPM control
+### Phase 2 — Input hardware
+- [ ] HC595 → 16 step LEDs
+- [ ] HC165 → 16 step buttons (toggle steps live)
+- [ ] SHIFT button
+- [ ] Second encoder (ENC2)
+- [ ] MicroSD card mount + sample loading
+- [ ] All 6 PCM drum voices (hi-hat, open hi-hat, clap, clave)
 
-### Phase 3 — Full groovebox
-- [ ] 6-track pattern with per-track sample assignment
-- [ ] MIDI DIN IN/OUT (clock sync + note I/O)
-- [ ] Pattern chaining / song mode
+### Phase 3 — Performance features
+- [ ] Live pattern record (play pads while sequencer runs, TR-808 style)
+- [ ] Melodic tracks (configurable waveform: sine, saw, FM, PCM from SD)
 - [ ] Per-step parameter locks (velocity, pitch)
-- [ ] Saving/loading patterns to SD
+- [ ] Pattern chaining / song mode
+- [ ] Save/load patterns to SD
+
+### Phase 4 — OP-1 style UI
+- [ ] UI/UX design session (pages: PLAY / SOUND / FX / PATTERN)
+- [ ] Page system: SHIFT+ENC2 cycles pages, each remaps all 5 pots
+- [ ] Contextual OLED labels per page
+- [ ] Animated icons and graphical feedback
+
+### Phase 5 — Advanced synthesis
+- [ ] FM synthesis (DX7-style ALGO engine via AMY)
+- [ ] Karplus-Strong (physical string modeling)
+- [ ] Per-voice effects: reverb, delay, chorus, filter
+- [ ] Custom sample loading from SD at runtime
+
+### Phase 6 — Hardware finalization
+- [ ] PCB design in KiCad (open source, all schematics public)
+- [ ] Gerber files released for self-manufacturing
+- [ ] BOM optimized for lowest cost
+
+### Nice to have
+- [ ] Tape recorder / looper (record AMY output to SD in real-time)
 
 ---
 
 ## Inspiration
+
+Inspired by the **Teenage Engineering OP-1** — this project aims to replicate its core feature set as an open source DIY instrument accessible to anyone willing to solder.
 
 Architecture inspired by the **Wee Noise Makers PGB-1**: sequencer and synth engine fully decoupled, communicating only via MIDI-like messages.
 
