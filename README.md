@@ -15,8 +15,9 @@ An open source, DIY alternative to the Teenage Engineering OP-1 — a full-featu
 | Display | SH1106 128×64 OLED via I2C |
 | Storage | MicroSD via SPI |
 | Step buttons (in) | 74HC165 shift register × 2 (16 steps) |
+| Function buttons (in) | 74HC165 shift register × 1, chained (8 buttons: PLAY/STOP, REC, OVERVIEW, PATTERN, SOUND, NOTE, FX, MIXER) |
 | Step LEDs (out) | 74HC595 shift register × 2 (16 LEDs) |
-| Navigation | 2× rotary encoder with push (ENC1: track/play-stop, ENC2: value/REC) |
+| Navigation | 2× rotary encoder with push (ENC1: track/play-stop, ENC2: value/REC) + SHIFT held modifier |
 | Control | 4× 10 kΩ potentiometer |
 | MIDI | DIN 5-pin IN/OUT via UART1 (6N137 optocoupler) |
 
@@ -131,8 +132,9 @@ Create a `/samples/` folder and place WAV files (16-bit PCM, 44100 Hz, mono or s
 
 ### Phase 2 — Input hardware
 - [x] HC595 → 16 step LEDs (blip cursor: flash on/off at step change, no flicker)
-- [ ] HC165 → 16 step buttons (toggle steps live)
-- [ ] SHIFT button
+- [ ] HC165 × 2 → 16 step buttons (toggle steps live)
+- [ ] HC165 × 1 → 8 function buttons (PLAY/STOP, REC, OVERVIEW, PATTERN, SOUND, NOTE, FX, MIXER)
+- [ ] SHIFT button (GPIO 21, held modifier)
 - [ ] Second encoder (ENC2, click = REC)
 - [ ] MicroSD card mount + sample loading
 - [ ] All 6 PCM drum voices (hi-hat, open hi-hat, clap, clave)
@@ -150,10 +152,13 @@ Create a `/samples/` folder and place WAV files (16-bit PCM, 44100 Hz, mono or s
 - [ ] Save/load patterns to SD
 
 ### Phase 4 — UI/UX design + implementation
-- [ ] **UI/UX design session** (mandatory before coding — pages TBD, likely 6-8+)
-- [ ] Page navigation system (SHIFT+ENC2 + shortcuts; 4 pots × normal+SHIFT per page)
-- [ ] Contextual OLED labels per page
-- [ ] Animated icons and graphical feedback
+- [x] **UI/UX design session** completed 2026-06-30 — 7 modes (OVERVIEW, PATTERN, SOUND, NOTE, FX×8, MIXER), 8 function buttons, full ENC/POT/SHIFT mapping, 70 conflicts resolved
+- [ ] 7-mode navigation system implementation
+- [ ] Contextual OLED labels per mode
+- [ ] Animated waveform display (SOUND/MELODIC)
+- [ ] Arcade 80s visuals for FX screens
+- [ ] Velocity lane overlay (SHIFT held in OVERVIEW)
+- [ ] Parameter lock visual feedback (`▒` on OLED)
 
 ### Phase 5 — Advanced synthesis
 - [ ] FM synthesis (DX7-style ALGO engine via AMY)

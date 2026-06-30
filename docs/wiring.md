@@ -238,9 +238,37 @@ HC165 #2 pin  1 (SH/LD)   → ESP32 GPIO 8  (HC165_LOAD)   ← stesso filo di #1
 HC165 #2 pin  2 (CLK)     → ESP32 GPIO 12 (SCK)          ← stesso filo di #1
 HC165 #2 pin 15 (CLK_INH) → GND
 HC165 #2 pin 10 (SER)     → HC165 #1 pin 9 (QH)
-HC165 #2 pin  9 (QH)      → ESP32 GPIO 13 (MISO)
+HC165 #2 pin  9 (QH)      → HC165 #3 pin 10 (SER)        ← cascade verso function buttons
 HC165 #2 pin  7 (QH')     → non collegato
 ```
+
+**Connessioni HC165 #3 (8 function buttons):**
+
+```
+HC165 #3 pin 16 (VCC)     → 3.3V
+HC165 #3 pin  8 (GND)     → GND
+HC165 #3 pin  1 (SH/LD)   → ESP32 GPIO 8  (HC165_LOAD)   ← stesso filo di #1 e #2
+HC165 #3 pin  2 (CLK)     → ESP32 GPIO 12 (SCK)          ← stesso filo di #1 e #2
+HC165 #3 pin 15 (CLK_INH) → GND
+HC165 #3 pin 10 (SER)     → HC165 #2 pin 9 (QH)
+HC165 #3 pin  9 (QH)      → ESP32 GPIO 13 (MISO)         ← ultimo della catena
+HC165 #3 pin  7 (QH')     → non collegato
+```
+
+**Function buttons collegati agli ingressi di HC165 #3:**
+
+| Button | HC165 #3 | Pin ingresso | Funzione |
+|--------|----------|--------------|----------|
+| FB1    | #3       | A (11)       | PLAY/STOP |
+| FB2    | #3       | B (12)       | REC |
+| FB3    | #3       | C (13)       | MODE: OVERVIEW |
+| FB4    | #3       | D (14)       | MODE: PATTERN |
+| FB5    | #3       | E (3)        | MODE: SOUND |
+| FB6    | #3       | F (4)        | MODE: NOTE |
+| FB7    | #3       | G (5)        | MODE: FX |
+| FB8    | #3       | H (6)        | MODE: MIXER |
+
+Stesso schema di pull-up dei pulsanti step: `3.3V → 10 kΩ → pin HC165 + pulsante → GND`.
 
 **Pulsanti collegati agli ingressi** (mappa step → pin HC165):
 
@@ -373,11 +401,14 @@ I potenziometri (pot) hanno tre terminali: due fissi (CW e CCW) e uno centrale c
        CCW ── GND
 ```
 
-| Pot | GPIO | Funzione      |
-|-----|------|---------------|
-| 1   |  1   | BPM (tempo)   |
-| 2   |  2   | Volume master |
-| 3   |  4   | Parametro     |
+| Pot | GPIO | Funzione (OVERVIEW) |
+|-----|------|---------------------|
+| 1   |  1   | BPM (tempo)         |
+| 2   |  2   | Volume master       |
+| 3   |  3   | Parametro           |
+| 4   |  4   | Parametro           |
+
+Funzioni contestuali per modalità — vedi UI/UX design doc per la mappatura completa.
 
 > Il **condensatore da 100 nF** tra Wiper e GND filtra il rumore elettrico dell'ADC. Non è strettamente obbligatorio ma riduce molto il jitter nella lettura.
 
@@ -451,11 +482,13 @@ Misura tutto con un multimetro prima di collegare l'USB.
 - [ ] 100 nF tra VCC e GND su ogni chip
 - [ ] Ogni LED ha la resistenza da 220 Ω in serie
 
-**74HC165 (pulsanti):**
-- [ ] CLK_INH (pin 15) → GND su entrambi i chip
-- [ ] SER (pin 10) di HC165 #1 → GND
+**74HC165 (pulsanti step + function buttons, 3 chip):**
+- [ ] CLK_INH (pin 15) → GND su tutti e 3 i chip
+- [ ] SER (pin 10) di HC165 #1 → GND (primo della catena)
 - [ ] 100 nF tra VCC e GND su ogni chip
 - [ ] Ogni ingresso pulsante ha pull-up da 10 kΩ verso 3.3V
+- [ ] HC165 #2 QH → HC165 #3 SER (cascade)
+- [ ] HC165 #3 QH → ESP32 GPIO 13 (MISO)
 
 **MIDI 6N137:**
 - [ ] Pin 7 (Enable) → 10 kΩ → 3.3V su **entrambi** gli optocoupler

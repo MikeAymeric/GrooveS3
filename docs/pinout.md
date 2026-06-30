@@ -96,7 +96,7 @@ DIN IN pin 4 → 6N137 pin 3 (cathode)
 
 Wiper to GPIO; other terminals to 3.3V and GND. 100 nF cap wiper-to-GND recommended for noise.
 
-Each pot has two functions per page (normal + SHIFT held), across 4 pages (PLAY / SOUND / FX / PATTERN) = 32 total assignable functions. Page cycled via SHIFT+ENC2. See UI design session for final mapping.
+Functions are mode-dependent. See UI/UX design doc for complete per-mode mapping.
 
 ---
 
@@ -119,9 +119,9 @@ ENC1: track/pattern navigation. ENC2: value/step editing.
 
 | GPIO | Signal | Notes |
 |------|--------|-------|
-| 21 | SHIFT_BTN | Modifier key, INPUT_PULLUP |
+| 21 | SHIFT_BTN | Held modifier key, INPUT_PULLUP — never toggle |
 
-Step buttons and 4 function buttons are read via 74HC165 shift register on SPI.
+8 function buttons read via 74HC165 #3, chained after the 2 step-button HC165s on the same SPI bus (GPIO 8 LOAD, GPIO 12 CLK). Mapping: FB1=PLAY/STOP, FB2=REC, FB3=OVERVIEW, FB4=PATTERN, FB5=SOUND, FB6=NOTE, FB7=FX, FB8=MIXER.
 
 ---
 
