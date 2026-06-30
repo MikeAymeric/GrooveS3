@@ -14,10 +14,10 @@ An open source, DIY alternative to the Teenage Engineering OP-1 — a full-featu
 | Audio DAC | PCM5102A (WCMCU-5102 module) via I2S |
 | Display | SH1106 128×64 OLED via I2C |
 | Storage | MicroSD via SPI |
-| Step buttons (in) | 74HC165 shift register × 2 (16 steps + 4 function) |
+| Step buttons (in) | 74HC165 shift register × 2 (16 steps) |
 | Step LEDs (out) | 74HC595 shift register × 2 (16 LEDs) |
-| Navigation | 2× rotary encoder with push |
-| Control | 5× 10 kΩ potentiometer |
+| Navigation | 2× rotary encoder with push (ENC1: track/play-stop, ENC2: value/REC) |
+| Control | 4× 10 kΩ potentiometer |
 | MIDI | DIN 5-pin IN/OUT via UART1 (6N137 optocoupler) |
 
 Full GPIO table: [docs/pinout.md](docs/pinout.md)  
@@ -130,23 +130,28 @@ Create a `/samples/` folder and place WAV files (16-bit PCM, 44100 Hz, mono or s
 - [x] Encoder navigation: track select + play/stop toggle
 
 ### Phase 2 — Input hardware
-- [ ] HC595 → 16 step LEDs
+- [x] HC595 → 16 step LEDs (blip cursor: flash on/off at step change, no flicker)
 - [ ] HC165 → 16 step buttons (toggle steps live)
 - [ ] SHIFT button
-- [ ] Second encoder (ENC2)
+- [ ] Second encoder (ENC2, click = REC)
 - [ ] MicroSD card mount + sample loading
 - [ ] All 6 PCM drum voices (hi-hat, open hi-hat, clap, clave)
 
 ### Phase 3 — Performance features
-- [ ] Live pattern record (play pads while sequencer runs, TR-808 style)
-- [ ] Melodic tracks (configurable waveform: sine, saw, FM, PCM from SD)
-- [ ] Per-step parameter locks (velocity, pitch)
+- [ ] Live pattern record (TR-808 style, ENC2 click = REC)
+- [ ] Melodic tracks (waveform: sine/saw/FM/PCM; ENC1 = pitch, ENC2 = parameter)
+- [ ] Step buttons as chromatic keyboard (16 semitones C→D#, octave via ENC2)
+- [ ] Arpeggiator (rate, pattern: up/down/random/chord, octave range)
+- [ ] Chord mode (one step triggers a full chord)
+- [ ] Scale quantization (root note + mode: major, minor, dorian, pentatonic…)
+- [ ] LFO (modulate AMY parameters: cutoff, pitch, volume)
+- [ ] Per-step parameter locks (velocity, pitch, filter)
 - [ ] Pattern chaining / song mode
 - [ ] Save/load patterns to SD
 
-### Phase 4 — OP-1 style UI
-- [ ] UI/UX design session (pages: PLAY / SOUND / FX / PATTERN)
-- [ ] Page system: SHIFT+ENC2 cycles pages, each remaps all 5 pots
+### Phase 4 — UI/UX design + implementation
+- [ ] **UI/UX design session** (mandatory before coding — pages TBD, likely 6-8+)
+- [ ] Page navigation system (SHIFT+ENC2 + shortcuts; 4 pots × normal+SHIFT per page)
 - [ ] Contextual OLED labels per page
 - [ ] Animated icons and graphical feedback
 
