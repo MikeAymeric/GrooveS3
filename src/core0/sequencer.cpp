@@ -62,6 +62,7 @@ void seqInit() {
         sTracks[t].midiLen  = 1;
         for (int s = 0; s < SEQ_STEPS; s++) sTracks[t].steps[s] = false;
     }
+
 }
 
 void seqToggleStep(uint8_t track, uint8_t step) {
@@ -108,13 +109,6 @@ void seqTask(void* /*arg*/) {
             midiPoll();
             gMasterVolume = inputGetPotNorm(1); // VOLUME
             uiUpdate();  // internally throttled to DISPLAY_FPS_MAX
-
-            // Update LED strip to reflect current sequencer state
-            for (uint8_t s = 0; s < SEQ_STEPS; s++) {
-                bool on = seqGetStep(sActiveTrack, s) || (sPlaying && s == sCurrentStep);
-                inputSetLed(s, on);
-            }
-            inputFlushLeds();
         }
 
         // --- BPM pot: re-read every step to update timing ---
@@ -141,6 +135,31 @@ void seqTask(void* /*arg*/) {
         } else if (!sPlaying) {
             xLastStepWake = xTaskGetTickCount();  // keep reference fresh while stopped
         }
+
+        // LED blip: cursore visibile come breve flash su/off al cambio step
+        static uint32_t sStepChangeMs = 0;
+        static uint8_t  sBlipStep     = 255;
+
+        // Rileva cambio step
+        static uint8_t sLastStep = 255;
+        if (sPlaying && sCurrentStep != sLastStep) {
+            sLastStep      = sCurrentStep;
+            sBlipStep      = sCurrentStep;
+            sStepChangeMs  = millis();
+        }
+        if (!sPlaying) sLastStep = 255;
+
+        uint32_t blipDuration = max(stepIntervalCached * 30 / 100, (uint32_t)40);  // min 40ms
+        bool blipActive = sPlaying && (millis() - sStepChangeMs) < blipDuration;
+
+        for (uint8_t s = 0; s < SEQ_STEPS; s++) {
+            bool hasNote  = seqGetStep(sActiveTrack, s);
+            bool isBlip   = blipActive && s == sBlipStep;
+            // blip: flash ON su step vuoto, flash OFF su step con nota
+            bool on = isBlip ? !hasNote : hasNote;
+            inputSetLed(s, on);
+        }
+        inputFlushLeds();
 
         vTaskDelay(pdMS_TO_TICKS(1));
     }

@@ -43,7 +43,7 @@ Prices are indicative (EUR, AliExpress/LCSC/Mouser). Quantities are per unit.
 
 | # | Component | Model | Qty | Unit Price | Notes |
 |---|-----------|-------|-----|-----------|-------|
-| 8  | Parallel-in shift reg. | 74HC165 DIP-16 | 2 | €0.20 | Chained for 16 step buttons |
+| 8  | Parallel-in shift reg. | 74HC165 DIP-16 | 3 | €0.20 | ×2 chained for 16 step buttons + ×1 for 8 function buttons |
 | 9  | Serial-out shift reg.  | 74HC595 DIP-16 | 2 | €0.20 | Chained for 16 step LEDs |
 
 ---
@@ -52,7 +52,7 @@ Prices are indicative (EUR, AliExpress/LCSC/Mouser). Quantities are per unit.
 
 | # | Component | Model | Qty | Unit Price | Notes |
 |---|-----------|-------|-----|-----------|-------|
-| 10 | Tactile buttons | 6×6 mm, 4-pin | 20 | €0.05 | 16 steps + 4 function buttons |
+| 10 | Tactile buttons | 6×6 mm, 4-pin | 25 | €0.05 | 16 steps + 8 function buttons + 1 SHIFT |
 | 11 | LEDs | 3 mm green, 20 mA | 16 | €0.03 | Step indicators |
 | 12 | Resistors | 220 Ω 1/4W | 16 | €0.02 | LED current limiting |
 
@@ -71,8 +71,8 @@ Prices are indicative (EUR, AliExpress/LCSC/Mouser). Quantities are per unit.
 
 | # | Component | Model | Qty | Unit Price | Notes |
 |---|-----------|-------|-----|-----------|-------|
-| 15 | Potentiometer | Alpha RD901F 10 kΩ linear | 3 | €0.90 | BPM, Volume, Param |
-| 16 | Pot knobs | 6 mm D-shaft | 3 | €0.30 | Any matching knob |
+| 15 | Potentiometer | Alpha RD901F 10 kΩ linear | 4 | €0.90 | POT1–POT4, mode-dependent functions |
+| 16 | Pot knobs | 6 mm D-shaft | 4 | €0.30 | Any matching knob |
 
 ---
 
