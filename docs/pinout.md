@@ -40,6 +40,10 @@ WCMCU-5102 pin names: SCL → GND (PLL mode), FMT → GND (I2S format), XMT → 
 
 HC595 OE → GND (always enabled). HC165 CLK_INH → GND.
 
+**Schemi di collegamento:**
+- [HC595 x2 in cascata — 16 LED step](hc595_wiring.png)
+- [HC165 x2 in cascata — 16 step button](hc165_wiring.png)
+
 ---
 
 ## UART1 — MIDI DIN 5-pin
@@ -95,6 +99,8 @@ DIN IN pin 4 → 6N137 pin 3 (cathode)
 | 4 | POT_4 | Page-dependent function |
 
 Wiper to GPIO; other terminals to 3.3V and GND. 100 nF cap wiper-to-GND recommended for noise.
+
+**Schema di collegamento:** [Potenziometro + condensatore anti-rumore](pot_capacitor_wiring.png)
 
 Functions are mode-dependent. See UI/UX design doc for complete per-mode mapping.
 
