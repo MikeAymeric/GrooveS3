@@ -57,22 +57,23 @@ Baud rate: 31250.
 
 ### 6N137 wiring notes
 
-The 6N137 is **not pin-compatible** with 6N138. Key differences:
+The 6N137 is **not pin-compatible** with 6N138. DIP-8 pinout: 1=NC, 2=Anode, 3=Cathode, 4=NC, 5=GND, 6=VO (output), 7=VE (Enable), 8=VCC.
 
-- **Pin 2** — LED Anode (vs pin 1 on 6N138)
-- **Pin 3** — LED Cathode (vs pin 2 on 6N138)
-- **Pin 6** — VCC output side (must be connected to 3.3V)
+- **Pin 2** — LED Anode
+- **Pin 3** — LED Cathode
+- **Pin 5** — GND
+- **Pin 6** — VO, open-collector output (pull-up 10 kΩ to VCC)
 - **Pin 7** — Enable (active-high, must be pulled to VCC via 10 kΩ — leave floating = output always disabled)
-- **Pin 5** — Open-collector output (pull-up 10 kΩ to VCC)
+- **Pin 8** — VCC (must be connected to 3.3V)
 
 **MIDI TX circuit (GPIO 41 → DIN OUT pin 5):**
 ```
 GPIO 41 → 220 Ω → 6N137 pin 2 (anode)
 6N137 pin 3 (cathode) → GND
-6N137 pin 4 → GND
-6N137 pin 6 (VCC) → 3.3V
+6N137 pin 5 (GND) → GND
+6N137 pin 8 (VCC) → 3.3V
 6N137 pin 7 (Enable) → 10 kΩ → 3.3V
-6N137 pin 5 (output) → 270 Ω → DIN OUT pin 5
+6N137 pin 6 (output) → 270 Ω → DIN OUT pin 5
 DIN OUT pin 2 → GND
 ```
 
@@ -81,10 +82,10 @@ DIN OUT pin 2 → GND
 DIN IN pin 5 → 220 Ω → 6N137 pin 2 (anode)
 DIN IN pin 4 → 6N137 pin 3 (cathode)
 1N4148 in antiparallelo tra pin 2 e pin 3 (protezione inversione)
-6N137 pin 4 → GND
-6N137 pin 6 (VCC) → 3.3V
+6N137 pin 5 (GND) → GND
+6N137 pin 8 (VCC) → 3.3V
 6N137 pin 7 (Enable) → 10 kΩ → 3.3V
-6N137 pin 5 (output) → 10 kΩ → 3.3V → GPIO 42
+6N137 pin 6 (output) → 10 kΩ → 3.3V → GPIO 42
 ```
 
 ---

@@ -329,10 +329,10 @@ Il 6N137 isola elettricamente il MIDI IN e OUT. Ne servono due: uno per TX, uno 
         notch o punto
            ▼
        ┌───┤├───┐
-NC  1 ─┤         ├─ 8  NC
+NC  1 ─┤         ├─ 8  VCC      → 3.3V
 A   2 ─┤         ├─ 7  Enable   → 10 kΩ → 3.3V  (OBBLIGATORIO)
-K   3 ─┤         ├─ 6  VCC      → 3.3V
-GND 4 ─┤         ├─ 5  Output   → 10 kΩ → 3.3V (lato RX) / 270 Ω (lato TX)
+K   3 ─┤         ├─ 6  Output   → 10 kΩ → 3.3V (lato RX) / 270 Ω (lato TX)
+NC  4 ─┤         ├─ 5  GND
        └─────────┘
   A = anodo LED interno
   K = catodo LED interno
@@ -347,10 +347,10 @@ GND 4 ─┤         ├─ 5  Output   → 10 kΩ → 3.3V (lato RX) / 270 Ω (
 ```
 ESP32 GPIO 41 ──→ 220 Ω ──→ 6N137 #1 pin 2 (A, anodo)
                               6N137 #1 pin 3 (K, catodo) ──→ GND
-                              6N137 #1 pin 4 (GND)       ──→ GND
-                              6N137 #1 pin 6 (VCC)       ──→ 3.3V
+                              6N137 #1 pin 5 (GND)       ──→ GND
+                              6N137 #1 pin 8 (VCC)       ──→ 3.3V
                               6N137 #1 pin 7 (Enable)    ──→ 10 kΩ ──→ 3.3V
-                              6N137 #1 pin 5 (Output)    ──→ 270 Ω ──→ DIN OUT pin 5
+                              6N137 #1 pin 6 (Output)    ──→ 270 Ω ──→ DIN OUT pin 5
 
 DIN OUT pin 2 ──→ GND
 DIN OUT pin 1, 3, 4 → non collegati
@@ -369,20 +369,20 @@ DIN IN pin 4 ──────────→ 6N137 #2 pin 3 (K, catodo)
                           1N4148 in antiparallelo tra pin 2 e pin 3
                           (anodo diodo su pin 3, catodo su pin 2 — protezione inversione)
 
-                          6N137 #2 pin 4 (GND)    ──→ GND
-                          6N137 #2 pin 6 (VCC)    ──→ 3.3V
+                          6N137 #2 pin 5 (GND)    ──→ GND
+                          6N137 #2 pin 8 (VCC)    ──→ 3.3V
                           6N137 #2 pin 7 (Enable) ──→ 10 kΩ ──→ 3.3V
-                          6N137 #2 pin 5 (Output) ──→ 10 kΩ ──→ 3.3V
+                          6N137 #2 pin 6 (Output) ──→ 10 kΩ ──→ 3.3V
                                                    ──→ ESP32 GPIO 42
 
 DIN IN pin 2 → non collegato
 ```
 
-La **resistenza da 10 kΩ** sul pin 5 (Output) è il pull-up dell'uscita open-collector del 6N137 — senza di essa l'uscita fluttua e GPIO 42 legge dati a caso.
+La **resistenza da 10 kΩ** sul pin 6 (Output) è il pull-up dell'uscita open-collector del 6N137 — senza di essa l'uscita fluttua e GPIO 42 legge dati a caso.
 
 Il **diodo 1N4148** protegge da eventuali connessioni MIDI invertite.
 
-> **100 nF** di disaccoppiamento su ogni 6N137 tra VCC (pin 6) e GND (pin 4).
+> **100 nF** di disaccoppiamento su ogni 6N137 tra VCC (pin 8) e GND (pin 5).
 
 ---
 
@@ -492,8 +492,8 @@ Misura tutto con un multimetro prima di collegare l'USB.
 
 **MIDI 6N137:**
 - [ ] Pin 7 (Enable) → 10 kΩ → 3.3V su **entrambi** gli optocoupler
-- [ ] Pull-up 10 kΩ su pin 5 (Output) del 6N137 per MIDI RX
-- [ ] 100 nF tra VCC (pin 6) e GND (pin 4) su ogni chip
+- [ ] Pull-up 10 kΩ su pin 6 (Output) del 6N137 per MIDI RX
+- [ ] 100 nF tra VCC (pin 8) e GND (pin 5) su ogni chip
 
 **SPI:**
 - [ ] SD CS (GPIO 10) non attivo a riposo (deve essere HIGH)
