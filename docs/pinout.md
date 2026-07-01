@@ -42,7 +42,7 @@ HC595 OE → GND (always enabled). HC165 CLK_INH → GND.
 
 **Schemi di collegamento:**
 - [HC595 x2 in cascata — 16 LED step](hc595_wiring.png)
-- [HC165 x2 in cascata — 16 step button](hc165_wiring.png)
+- [HC165 x3 in cascata — 16 step + 8 function button](hc165_wiring.png)
 
 ---
 

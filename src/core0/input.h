@@ -7,13 +7,19 @@
 // Handles: 74HC165 buttons, 74HC595 LEDs, EC11 encoders, ADC pots
 // ============================================================
 
-// --- Button bitmask layout from HC165 (16 step + 4 function) ---
+// --- Button bitmask layout from HC165 (16 step + 8 function) + dedicated SHIFT GPIO ---
 // Bits 0-15  → step buttons
-// Bits 16-19 → function buttons (PLAY, STOP, REC, TRACK_SEL)
-#define BTN_PLAY        (1UL << 16)
-#define BTN_STOP        (1UL << 17)
-#define BTN_REC         (1UL << 18)
-#define BTN_TRACK_SEL   (1UL << 19)
+// Bits 16-23 → function buttons FB1-FB8 (74HC165 #3)
+// Bit  24    → SHIFT (dedicated GPIO, held modifier — never toggle)
+#define BTN_FB1         (1UL << 16)   // PLAY/STOP
+#define BTN_FB2         (1UL << 17)   // REC
+#define BTN_FB3         (1UL << 18)   // MODE: OVERVIEW
+#define BTN_FB4         (1UL << 19)   // MODE: PATTERN
+#define BTN_FB5         (1UL << 20)   // MODE: SOUND
+#define BTN_FB6         (1UL << 21)   // MODE: NOTE
+#define BTN_FB7         (1UL << 22)   // MODE: FX
+#define BTN_FB8         (1UL << 23)   // MODE: MIXER
+#define BTN_SHIFT       (1UL << 24)   // held modifier (dedicated GPIO)
 
 struct EncoderState {
     volatile int32_t position;   // accumulated clicks (+ CW, - CCW)

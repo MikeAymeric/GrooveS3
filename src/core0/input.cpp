@@ -84,13 +84,14 @@ void inputInit() {
 }
 
 // ============================================================
-// HC165 — read 20 bits (16 step + 4 function) via SPI
-// We chain two HC165 (16 bits) and pad 4 more bits via SHIFT_BTN
-// Actual hardware: one 16-bit chain, function buttons on dedicated GPIOs
+// HC165 — read 24 bits (16 step + 8 function) via SPI
+// Three HC165 chained on the same LOAD/CLK bus: #1 (steps 1-8, SER->GND,
+// first in chain) -> #2 (steps 9-16) -> #3 (8 function buttons, QH->MISO,
+// last in chain). SHIFT is a separate dedicated GPIO, not part of the chain.
 // ============================================================
 
 static uint32_t hc165Read() {
-    uint8_t hi = 0, lo = 0;
+    uint8_t fbByte = 0xFF, hiByte = 0xFF, loByte = 0xFF;
 
     if (gSpiMutex && xSemaphoreTake(gSpiMutex, pdMS_TO_TICKS(5)) == pdTRUE) {
         // Pulse LOAD low to latch parallel inputs
@@ -99,21 +100,22 @@ static uint32_t hc165Read() {
         digitalWrite(PIN_HC165_LOAD, HIGH);
 
         SPI.beginTransaction(SPISettings(4000000, MSBFIRST, SPI_MODE0));
-        hi = SPI.transfer(0xFF);
-        lo = SPI.transfer(0xFF);
+        fbByte = SPI.transfer(0xFF);  // HC165 #3 — function buttons FB1-FB8
+        hiByte = SPI.transfer(0xFF);  // HC165 #2 — steps 9-16
+        loByte = SPI.transfer(0xFF);  // HC165 #1 — steps 1-8
         SPI.endTransaction();
 
         xSemaphoreGive(gSpiMutex);
     }
 
     // HC165 outputs 1 when button is open, 0 when pressed — invert
-    uint16_t steps = ~((uint16_t)(hi << 8) | lo);
+    uint16_t steps = ~(((uint16_t)hiByte << 8) | loByte);
+    uint8_t  funcs = (uint8_t)~fbByte;
 
-    // Function buttons on dedicated GPIO (active-low)
-    uint32_t func = 0;
-    if (!digitalRead(PIN_SHIFT_BTN)) func |= BTN_PLAY;
+    uint32_t func = (uint32_t)funcs << 16;
+    if (!digitalRead(PIN_SHIFT_BTN)) func |= BTN_SHIFT;
 
-    return (func << 16) | steps;
+    return func | steps;
 }
 
 // ============================================================

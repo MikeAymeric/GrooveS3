@@ -197,7 +197,7 @@ HC595 #2 pin 10 (SRCLR) → 3.3V
 
 ### 74HC165 — Shift register ingressi (pulsanti step)
 
-Due HC165 in cascata leggono i 16 pulsanti degli step. Il chip campiona 8 ingressi paralleli e li invia in serie all'ESP32.
+Tre HC165 in cascata leggono i 16 pulsanti degli step più gli 8 function button. Ogni chip campiona 8 ingressi paralleli e li invia in serie all'ESP32 (24 bit totali).
 
 **Pinout 74HC165 DIP-16:**
 

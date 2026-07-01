@@ -1,6 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1000" viewBox="0 0 1500 1000" font-family="Consolas,Menlo,monospace">
-<rect width="1500" height="1000" fill="#ffffff"/>
-<text x="30" y="40" font-size="26" font-weight="bold" fill="#111">GrooveS3 — 74HC165 x2 in cascata (16 step button)</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="2450" height="1050" viewBox="0 0 2450 1050" font-family="Consolas,Menlo,monospace">
+<rect width="2450" height="1050" fill="#ffffff"/>
+<text x="30" y="40" font-size="26" font-weight="bold" fill="#111">GrooveS3 — 74HC165 x3 in cascata (16 step + 8 function button)</text>
+<text x="30" y="66" font-size="14" fill="#555">Catena elettrica: #1 (SER→GND, primo) → #2 → #3 (QH→MISO, ultimo). Layout invertito rispetto ai numeri per accorciare i collegamenti.</text>
 <rect x="40" y="380" width="190" height="220" rx="8" fill="#dbe9ff" stroke="#333" stroke-width="2"/>
 <text x="135" y="408" font-size="20" font-weight="bold" text-anchor="middle" fill="#111">ESP32-S3</text>
 <text x="52" y="444" font-size="15" fill="#111" text-anchor="start">GPIO13 (MISO)</text>
@@ -12,185 +13,288 @@
 <text x="52" y="564" font-size="15" fill="#111" text-anchor="start">GND</text>
 <circle cx="226" cy="560" r="4" fill="#111"/>
 <rect x="460" y="180" width="260" height="680" rx="8" fill="#dcedc8" stroke="#333" stroke-width="2"/>
-<text x="590" y="208" font-size="20" font-weight="bold" text-anchor="middle" fill="#111">74HC165 #1</text>
-<circle cx="464" cy="250" r="4" fill="#111"/>
-<text x="476" y="254" font-size="15" fill="#111" text-anchor="start">9 QH</text>
-<circle cx="464" cy="300" r="4" fill="#111"/>
-<text x="476" y="304" font-size="15" fill="#111" text-anchor="start">2 CLK</text>
-<circle cx="464" cy="350" r="4" fill="#111"/>
-<text x="476" y="354" font-size="15" fill="#111" text-anchor="start">1 SH/LD</text>
-<circle cx="464" cy="400" r="4" fill="#111"/>
-<text x="476" y="404" font-size="15" fill="#111" text-anchor="start">15 CLK INH</text>
-<circle cx="464" cy="450" r="4" fill="#111"/>
-<text x="476" y="454" font-size="15" fill="#111" text-anchor="start">16 VCC</text>
-<circle cx="464" cy="500" r="4" fill="#111"/>
-<text x="476" y="504" font-size="15" fill="#111" text-anchor="start">8 GND</text>
-<circle cx="716" cy="220" r="4" fill="#111"/>
-<text x="704" y="224" font-size="15" fill="#111" text-anchor="end">11 D0</text>
-<circle cx="716" cy="260" r="4" fill="#111"/>
-<text x="704" y="264" font-size="15" fill="#111" text-anchor="end">12 D1</text>
-<circle cx="716" cy="300" r="4" fill="#111"/>
-<text x="704" y="304" font-size="15" fill="#111" text-anchor="end">13 D2</text>
-<circle cx="716" cy="340" r="4" fill="#111"/>
-<text x="704" y="344" font-size="15" fill="#111" text-anchor="end">14 D3</text>
-<circle cx="716" cy="380" r="4" fill="#111"/>
-<text x="704" y="384" font-size="15" fill="#111" text-anchor="end">3 D4</text>
-<circle cx="716" cy="420" r="4" fill="#111"/>
-<text x="704" y="424" font-size="15" fill="#111" text-anchor="end">4 D5</text>
-<circle cx="716" cy="460" r="4" fill="#111"/>
-<text x="704" y="464" font-size="15" fill="#111" text-anchor="end">5 D6</text>
-<circle cx="716" cy="500" r="4" fill="#111"/>
-<text x="704" y="504" font-size="15" fill="#111" text-anchor="end">6 D7</text>
-<circle cx="716" cy="820" r="4" fill="#111"/>
-<text x="704" y="824" font-size="15" fill="#111" text-anchor="end">10 SER</text>
-<rect x="980" y="180" width="260" height="680" rx="8" fill="#dcedc8" stroke="#333" stroke-width="2"/>
-<text x="1110" y="208" font-size="20" font-weight="bold" text-anchor="middle" fill="#111">74HC165 #2</text>
-<circle cx="984" cy="250" r="4" fill="#111"/>
-<text x="996" y="254" font-size="15" fill="#111" text-anchor="start">9 QH</text>
-<circle cx="984" cy="300" r="4" fill="#111"/>
-<text x="996" y="304" font-size="15" fill="#111" text-anchor="start">2 CLK</text>
-<circle cx="984" cy="350" r="4" fill="#111"/>
-<text x="996" y="354" font-size="15" fill="#111" text-anchor="start">1 SH/LD</text>
-<circle cx="984" cy="400" r="4" fill="#111"/>
-<text x="996" y="404" font-size="15" fill="#111" text-anchor="start">15 CLK INH</text>
-<circle cx="984" cy="450" r="4" fill="#111"/>
-<text x="996" y="454" font-size="15" fill="#111" text-anchor="start">16 VCC</text>
-<circle cx="984" cy="500" r="4" fill="#111"/>
-<text x="996" y="504" font-size="15" fill="#111" text-anchor="start">8 GND</text>
-<circle cx="1236" cy="220" r="4" fill="#111"/>
-<text x="1224" y="224" font-size="15" fill="#111" text-anchor="end">11 D0</text>
-<circle cx="1236" cy="260" r="4" fill="#111"/>
-<text x="1224" y="264" font-size="15" fill="#111" text-anchor="end">12 D1</text>
-<circle cx="1236" cy="300" r="4" fill="#111"/>
-<text x="1224" y="304" font-size="15" fill="#111" text-anchor="end">13 D2</text>
-<circle cx="1236" cy="340" r="4" fill="#111"/>
-<text x="1224" y="344" font-size="15" fill="#111" text-anchor="end">14 D3</text>
-<circle cx="1236" cy="380" r="4" fill="#111"/>
-<text x="1224" y="384" font-size="15" fill="#111" text-anchor="end">3 D4</text>
-<circle cx="1236" cy="420" r="4" fill="#111"/>
-<text x="1224" y="424" font-size="15" fill="#111" text-anchor="end">4 D5</text>
-<circle cx="1236" cy="460" r="4" fill="#111"/>
-<text x="1224" y="464" font-size="15" fill="#111" text-anchor="end">5 D6</text>
-<circle cx="1236" cy="500" r="4" fill="#111"/>
-<text x="1224" y="504" font-size="15" fill="#111" text-anchor="end">6 D7</text>
-<circle cx="1236" cy="820" r="4" fill="#111"/>
-<text x="1224" y="824" font-size="15" fill="#111" text-anchor="end">10 SER → GND (fine catena)</text>
-<line x1="728" y1="220" x2="750" y2="220" stroke="#6a1b9a" stroke-width="3"/>
-<rect x="754" y="210" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
-<text x="769" y="255" font-size="11" text-anchor="middle" fill="#333">GND</text>
-<line x1="769" y1="230" x2="769" y2="244" stroke="#333" stroke-width="2"/>
-<text x="794" y="224" font-size="13" fill="#111">STEP 0</text>
-<line x1="728" y1="260" x2="750" y2="260" stroke="#6a1b9a" stroke-width="3"/>
-<rect x="754" y="250" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
-<text x="769" y="295" font-size="11" text-anchor="middle" fill="#333">GND</text>
-<line x1="769" y1="270" x2="769" y2="284" stroke="#333" stroke-width="2"/>
-<text x="794" y="264" font-size="13" fill="#111">STEP 1</text>
-<line x1="728" y1="300" x2="750" y2="300" stroke="#6a1b9a" stroke-width="3"/>
-<rect x="754" y="290" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
-<text x="769" y="335" font-size="11" text-anchor="middle" fill="#333">GND</text>
-<line x1="769" y1="310" x2="769" y2="324" stroke="#333" stroke-width="2"/>
-<text x="794" y="304" font-size="13" fill="#111">STEP 2</text>
-<line x1="728" y1="340" x2="750" y2="340" stroke="#6a1b9a" stroke-width="3"/>
-<rect x="754" y="330" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
-<text x="769" y="375" font-size="11" text-anchor="middle" fill="#333">GND</text>
-<line x1="769" y1="350" x2="769" y2="364" stroke="#333" stroke-width="2"/>
-<text x="794" y="344" font-size="13" fill="#111">STEP 3</text>
-<line x1="728" y1="380" x2="750" y2="380" stroke="#6a1b9a" stroke-width="3"/>
-<rect x="754" y="370" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
-<text x="769" y="415" font-size="11" text-anchor="middle" fill="#333">GND</text>
-<line x1="769" y1="390" x2="769" y2="404" stroke="#333" stroke-width="2"/>
-<text x="794" y="384" font-size="13" fill="#111">STEP 4</text>
-<line x1="728" y1="420" x2="750" y2="420" stroke="#6a1b9a" stroke-width="3"/>
-<rect x="754" y="410" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
-<text x="769" y="455" font-size="11" text-anchor="middle" fill="#333">GND</text>
-<line x1="769" y1="430" x2="769" y2="444" stroke="#333" stroke-width="2"/>
-<text x="794" y="424" font-size="13" fill="#111">STEP 5</text>
-<line x1="728" y1="460" x2="750" y2="460" stroke="#6a1b9a" stroke-width="3"/>
-<rect x="754" y="450" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
-<text x="769" y="495" font-size="11" text-anchor="middle" fill="#333">GND</text>
-<line x1="769" y1="470" x2="769" y2="484" stroke="#333" stroke-width="2"/>
-<text x="794" y="464" font-size="13" fill="#111">STEP 6</text>
-<line x1="728" y1="500" x2="750" y2="500" stroke="#6a1b9a" stroke-width="3"/>
-<rect x="754" y="490" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
-<text x="769" y="535" font-size="11" text-anchor="middle" fill="#333">GND</text>
-<line x1="769" y1="510" x2="769" y2="524" stroke="#333" stroke-width="2"/>
-<text x="794" y="504" font-size="13" fill="#111">STEP 7</text>
-<line x1="1248" y1="220" x2="1270" y2="220" stroke="#6a1b9a" stroke-width="3"/>
-<rect x="1274" y="210" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
-<text x="1289" y="255" font-size="11" text-anchor="middle" fill="#333">GND</text>
-<line x1="1289" y1="230" x2="1289" y2="244" stroke="#333" stroke-width="2"/>
-<text x="1314" y="224" font-size="13" fill="#111">STEP 8</text>
-<line x1="1248" y1="260" x2="1270" y2="260" stroke="#6a1b9a" stroke-width="3"/>
-<rect x="1274" y="250" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
-<text x="1289" y="295" font-size="11" text-anchor="middle" fill="#333">GND</text>
-<line x1="1289" y1="270" x2="1289" y2="284" stroke="#333" stroke-width="2"/>
-<text x="1314" y="264" font-size="13" fill="#111">STEP 9</text>
-<line x1="1248" y1="300" x2="1270" y2="300" stroke="#6a1b9a" stroke-width="3"/>
-<rect x="1274" y="290" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
-<text x="1289" y="335" font-size="11" text-anchor="middle" fill="#333">GND</text>
-<line x1="1289" y1="310" x2="1289" y2="324" stroke="#333" stroke-width="2"/>
-<text x="1314" y="304" font-size="13" fill="#111">STEP 10</text>
-<line x1="1248" y1="340" x2="1270" y2="340" stroke="#6a1b9a" stroke-width="3"/>
-<rect x="1274" y="330" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
-<text x="1289" y="375" font-size="11" text-anchor="middle" fill="#333">GND</text>
-<line x1="1289" y1="350" x2="1289" y2="364" stroke="#333" stroke-width="2"/>
-<text x="1314" y="344" font-size="13" fill="#111">STEP 11</text>
-<line x1="1248" y1="380" x2="1270" y2="380" stroke="#6a1b9a" stroke-width="3"/>
-<rect x="1274" y="370" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
-<text x="1289" y="415" font-size="11" text-anchor="middle" fill="#333">GND</text>
-<line x1="1289" y1="390" x2="1289" y2="404" stroke="#333" stroke-width="2"/>
-<text x="1314" y="384" font-size="13" fill="#111">STEP 12</text>
-<line x1="1248" y1="420" x2="1270" y2="420" stroke="#6a1b9a" stroke-width="3"/>
-<rect x="1274" y="410" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
-<text x="1289" y="455" font-size="11" text-anchor="middle" fill="#333">GND</text>
-<line x1="1289" y1="430" x2="1289" y2="444" stroke="#333" stroke-width="2"/>
-<text x="1314" y="424" font-size="13" fill="#111">STEP 13</text>
-<line x1="1248" y1="460" x2="1270" y2="460" stroke="#6a1b9a" stroke-width="3"/>
-<rect x="1274" y="450" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
-<text x="1289" y="495" font-size="11" text-anchor="middle" fill="#333">GND</text>
-<line x1="1289" y1="470" x2="1289" y2="484" stroke="#333" stroke-width="2"/>
-<text x="1314" y="464" font-size="13" fill="#111">STEP 14</text>
-<line x1="1248" y1="500" x2="1270" y2="500" stroke="#6a1b9a" stroke-width="3"/>
-<rect x="1274" y="490" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
-<text x="1289" y="535" font-size="11" text-anchor="middle" fill="#333">GND</text>
-<line x1="1289" y1="510" x2="1289" y2="524" stroke="#333" stroke-width="2"/>
-<text x="1314" y="504" font-size="13" fill="#111">STEP 15</text>
-<line x1="460" y1="250" x2="430" y2="250" stroke="#1565c0" stroke-width="3"/>
-<line x1="430" y1="250" x2="430" y2="440" stroke="#1565c0" stroke-width="3"/>
-<line x1="430" y1="440" x2="230" y2="440" stroke="#1565c0" stroke-width="3"/>
-<text x="240" y="432" font-size="13" fill="#1565c0" font-weight="bold">DATA (MISO) ← primo chip della catena</text>
-<line x1="230" y1="480" x2="410" y2="480" stroke="#2e7d32" stroke-width="3"/>
-<line x1="410" y1="480" x2="410" y2="300" stroke="#2e7d32" stroke-width="3"/>
-<line x1="410" y1="300" x2="460" y2="300" stroke="#2e7d32" stroke-width="3"/>
-<line x1="410" y1="480" x2="410" y2="140" stroke="#2e7d32" stroke-width="3"/>
-<line x1="410" y1="140" x2="950" y2="140" stroke="#2e7d32" stroke-width="3"/>
-<line x1="950" y1="140" x2="950" y2="300" stroke="#2e7d32" stroke-width="3"/>
-<line x1="950" y1="300" x2="980" y2="300" stroke="#2e7d32" stroke-width="3"/>
-<text x="240" y="472" font-size="13" fill="#2e7d32" font-weight="bold">CLK (comune)</text>
-<line x1="230" y1="520" x2="390" y2="520" stroke="#e65100" stroke-width="3"/>
-<line x1="390" y1="520" x2="390" y2="350" stroke="#e65100" stroke-width="3"/>
-<line x1="390" y1="350" x2="460" y2="350" stroke="#e65100" stroke-width="3"/>
-<line x1="390" y1="520" x2="390" y2="160" stroke="#e65100" stroke-width="3"/>
-<line x1="390" y1="160" x2="930" y2="160" stroke="#e65100" stroke-width="3"/>
-<line x1="930" y1="160" x2="930" y2="350" stroke="#e65100" stroke-width="3"/>
-<line x1="930" y1="350" x2="980" y2="350" stroke="#e65100" stroke-width="3"/>
-<text x="240" y="538" font-size="13" fill="#e65100" font-weight="bold">SH/LD (comune, attivo basso)</text>
-<line x1="980" y1="250" x2="966" y2="250" stroke="#1565c0" stroke-width="3"/>
-<line x1="966" y1="250" x2="966" y2="820" stroke="#1565c0" stroke-width="3"/>
-<line x1="966" y1="820" x2="720" y2="820" stroke="#1565c0" stroke-width="3"/>
-<text x="728" y="812" font-size="13" fill="#1565c0" font-weight="bold">chip #2 QH → chip #1 SER (cascata)</text>
+<text x="590" y="208" font-size="20" font-weight="bold" text-anchor="middle" fill="#111">74HC165 #3</text>
+<text x="590" y="232" font-size="14" text-anchor="middle" fill="#333">8 function button</text>
+<circle cx="460" cy="250" r="4" fill="#111"/>
+<text x="472" y="254" font-size="15" fill="#111" text-anchor="start">9 QH</text>
+<circle cx="460" cy="300" r="4" fill="#111"/>
+<text x="472" y="304" font-size="15" fill="#111" text-anchor="start">2 CLK</text>
+<circle cx="460" cy="350" r="4" fill="#111"/>
+<text x="472" y="354" font-size="15" fill="#111" text-anchor="start">1 SH/LD</text>
+<circle cx="460" cy="400" r="4" fill="#111"/>
+<text x="472" y="404" font-size="15" fill="#111" text-anchor="start">15 CLK INH</text>
+<circle cx="460" cy="450" r="4" fill="#111"/>
+<text x="472" y="454" font-size="15" fill="#111" text-anchor="start">16 VCC</text>
+<circle cx="460" cy="500" r="4" fill="#111"/>
+<text x="472" y="504" font-size="15" fill="#111" text-anchor="start">8 GND</text>
 <line x1="460" y1="400" x2="444" y2="400" stroke="#000" stroke-width="3"/>
 <text x="440" y="404" font-size="12" fill="#000" text-anchor="end">GND</text>
 <line x1="460" y1="450" x2="444" y2="450" stroke="#c62828" stroke-width="3"/>
 <text x="440" y="454" font-size="12" fill="#c62828" text-anchor="end">3.3V</text>
 <line x1="460" y1="500" x2="444" y2="500" stroke="#000" stroke-width="3"/>
 <text x="440" y="504" font-size="12" fill="#000" text-anchor="end">GND</text>
-<line x1="980" y1="400" x2="964" y2="400" stroke="#000" stroke-width="3"/>
-<text x="960" y="404" font-size="12" fill="#000" text-anchor="end">GND</text>
-<line x1="980" y1="450" x2="964" y2="450" stroke="#c62828" stroke-width="3"/>
-<text x="960" y="454" font-size="12" fill="#c62828" text-anchor="end">3.3V</text>
-<line x1="980" y1="500" x2="964" y2="500" stroke="#000" stroke-width="3"/>
-<text x="960" y="504" font-size="12" fill="#000" text-anchor="end">GND</text>
+<circle cx="720" cy="220" r="4" fill="#111"/>
+<text x="708" y="224" font-size="15" fill="#111" text-anchor="end">11 D0</text>
+<circle cx="720" cy="268" r="4" fill="#111"/>
+<text x="708" y="272" font-size="15" fill="#111" text-anchor="end">12 D1</text>
+<circle cx="720" cy="316" r="4" fill="#111"/>
+<text x="708" y="320" font-size="15" fill="#111" text-anchor="end">13 D2</text>
+<circle cx="720" cy="364" r="4" fill="#111"/>
+<text x="708" y="368" font-size="15" fill="#111" text-anchor="end">14 D3</text>
+<circle cx="720" cy="412" r="4" fill="#111"/>
+<text x="708" y="416" font-size="15" fill="#111" text-anchor="end">3 D4</text>
+<circle cx="720" cy="460" r="4" fill="#111"/>
+<text x="708" y="464" font-size="15" fill="#111" text-anchor="end">4 D5</text>
+<circle cx="720" cy="508" r="4" fill="#111"/>
+<text x="708" y="512" font-size="15" fill="#111" text-anchor="end">5 D6</text>
+<circle cx="720" cy="556" r="4" fill="#111"/>
+<text x="708" y="560" font-size="15" fill="#111" text-anchor="end">6 D7</text>
+<circle cx="720" cy="820" r="4" fill="#111"/>
+<text x="708" y="824" font-size="15" fill="#111" text-anchor="end">10 SER</text>
+<line x1="728" y1="220" x2="940" y2="220" stroke="#6a1b9a" stroke-width="3"/>
+<rect x="944" y="210" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
+<text x="959" y="254" font-size="11" text-anchor="middle" fill="#333">GND</text>
+<line x1="959" y1="230" x2="959" y2="242" stroke="#333" stroke-width="2"/>
+<text x="984" y="224" font-size="13" fill="#111">FB1</text>
+<line x1="728" y1="268" x2="940" y2="268" stroke="#6a1b9a" stroke-width="3"/>
+<rect x="944" y="258" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
+<text x="959" y="302" font-size="11" text-anchor="middle" fill="#333">GND</text>
+<line x1="959" y1="278" x2="959" y2="290" stroke="#333" stroke-width="2"/>
+<text x="984" y="272" font-size="13" fill="#111">FB2</text>
+<line x1="728" y1="316" x2="940" y2="316" stroke="#6a1b9a" stroke-width="3"/>
+<rect x="944" y="306" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
+<text x="959" y="350" font-size="11" text-anchor="middle" fill="#333">GND</text>
+<line x1="959" y1="326" x2="959" y2="338" stroke="#333" stroke-width="2"/>
+<text x="984" y="320" font-size="13" fill="#111">FB3</text>
+<line x1="728" y1="364" x2="940" y2="364" stroke="#6a1b9a" stroke-width="3"/>
+<rect x="944" y="354" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
+<text x="959" y="398" font-size="11" text-anchor="middle" fill="#333">GND</text>
+<line x1="959" y1="374" x2="959" y2="386" stroke="#333" stroke-width="2"/>
+<text x="984" y="368" font-size="13" fill="#111">FB4</text>
+<line x1="728" y1="412" x2="940" y2="412" stroke="#6a1b9a" stroke-width="3"/>
+<rect x="944" y="402" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
+<text x="959" y="446" font-size="11" text-anchor="middle" fill="#333">GND</text>
+<line x1="959" y1="422" x2="959" y2="434" stroke="#333" stroke-width="2"/>
+<text x="984" y="416" font-size="13" fill="#111">FB5</text>
+<line x1="728" y1="460" x2="940" y2="460" stroke="#6a1b9a" stroke-width="3"/>
+<rect x="944" y="450" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
+<text x="959" y="494" font-size="11" text-anchor="middle" fill="#333">GND</text>
+<line x1="959" y1="470" x2="959" y2="482" stroke="#333" stroke-width="2"/>
+<text x="984" y="464" font-size="13" fill="#111">FB6</text>
+<line x1="728" y1="508" x2="940" y2="508" stroke="#6a1b9a" stroke-width="3"/>
+<rect x="944" y="498" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
+<text x="959" y="542" font-size="11" text-anchor="middle" fill="#333">GND</text>
+<line x1="959" y1="518" x2="959" y2="530" stroke="#333" stroke-width="2"/>
+<text x="984" y="512" font-size="13" fill="#111">FB7</text>
+<line x1="728" y1="556" x2="940" y2="556" stroke="#6a1b9a" stroke-width="3"/>
+<rect x="944" y="546" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
+<text x="959" y="590" font-size="11" text-anchor="middle" fill="#333">GND</text>
+<line x1="959" y1="566" x2="959" y2="578" stroke="#333" stroke-width="2"/>
+<text x="984" y="560" font-size="13" fill="#111">FB8</text>
+<rect x="1100" y="180" width="260" height="680" rx="8" fill="#dcedc8" stroke="#333" stroke-width="2"/>
+<text x="1230" y="208" font-size="20" font-weight="bold" text-anchor="middle" fill="#111">74HC165 #2</text>
+<text x="1230" y="232" font-size="14" text-anchor="middle" fill="#333">step 9–16</text>
+<circle cx="1100" cy="250" r="4" fill="#111"/>
+<text x="1112" y="254" font-size="15" fill="#111" text-anchor="start">9 QH</text>
+<circle cx="1100" cy="300" r="4" fill="#111"/>
+<text x="1112" y="304" font-size="15" fill="#111" text-anchor="start">2 CLK</text>
+<circle cx="1100" cy="350" r="4" fill="#111"/>
+<text x="1112" y="354" font-size="15" fill="#111" text-anchor="start">1 SH/LD</text>
+<circle cx="1100" cy="400" r="4" fill="#111"/>
+<text x="1112" y="404" font-size="15" fill="#111" text-anchor="start">15 CLK INH</text>
+<circle cx="1100" cy="450" r="4" fill="#111"/>
+<text x="1112" y="454" font-size="15" fill="#111" text-anchor="start">16 VCC</text>
+<circle cx="1100" cy="500" r="4" fill="#111"/>
+<text x="1112" y="504" font-size="15" fill="#111" text-anchor="start">8 GND</text>
+<line x1="1100" y1="400" x2="1084" y2="400" stroke="#000" stroke-width="3"/>
+<text x="1080" y="404" font-size="12" fill="#000" text-anchor="end">GND</text>
+<line x1="1100" y1="450" x2="1084" y2="450" stroke="#c62828" stroke-width="3"/>
+<text x="1080" y="454" font-size="12" fill="#c62828" text-anchor="end">3.3V</text>
+<line x1="1100" y1="500" x2="1084" y2="500" stroke="#000" stroke-width="3"/>
+<text x="1080" y="504" font-size="12" fill="#000" text-anchor="end">GND</text>
+<circle cx="1360" cy="220" r="4" fill="#111"/>
+<text x="1348" y="224" font-size="15" fill="#111" text-anchor="end">11 D0</text>
+<circle cx="1360" cy="268" r="4" fill="#111"/>
+<text x="1348" y="272" font-size="15" fill="#111" text-anchor="end">12 D1</text>
+<circle cx="1360" cy="316" r="4" fill="#111"/>
+<text x="1348" y="320" font-size="15" fill="#111" text-anchor="end">13 D2</text>
+<circle cx="1360" cy="364" r="4" fill="#111"/>
+<text x="1348" y="368" font-size="15" fill="#111" text-anchor="end">14 D3</text>
+<circle cx="1360" cy="412" r="4" fill="#111"/>
+<text x="1348" y="416" font-size="15" fill="#111" text-anchor="end">3 D4</text>
+<circle cx="1360" cy="460" r="4" fill="#111"/>
+<text x="1348" y="464" font-size="15" fill="#111" text-anchor="end">4 D5</text>
+<circle cx="1360" cy="508" r="4" fill="#111"/>
+<text x="1348" y="512" font-size="15" fill="#111" text-anchor="end">5 D6</text>
+<circle cx="1360" cy="556" r="4" fill="#111"/>
+<text x="1348" y="560" font-size="15" fill="#111" text-anchor="end">6 D7</text>
+<circle cx="1360" cy="820" r="4" fill="#111"/>
+<text x="1348" y="824" font-size="15" fill="#111" text-anchor="end">10 SER</text>
+<line x1="1368" y1="220" x2="1580" y2="220" stroke="#6a1b9a" stroke-width="3"/>
+<rect x="1584" y="210" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
+<text x="1599" y="254" font-size="11" text-anchor="middle" fill="#333">GND</text>
+<line x1="1599" y1="230" x2="1599" y2="242" stroke="#333" stroke-width="2"/>
+<text x="1624" y="224" font-size="13" fill="#111">STEP 8</text>
+<line x1="1368" y1="268" x2="1580" y2="268" stroke="#6a1b9a" stroke-width="3"/>
+<rect x="1584" y="258" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
+<text x="1599" y="302" font-size="11" text-anchor="middle" fill="#333">GND</text>
+<line x1="1599" y1="278" x2="1599" y2="290" stroke="#333" stroke-width="2"/>
+<text x="1624" y="272" font-size="13" fill="#111">STEP 9</text>
+<line x1="1368" y1="316" x2="1580" y2="316" stroke="#6a1b9a" stroke-width="3"/>
+<rect x="1584" y="306" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
+<text x="1599" y="350" font-size="11" text-anchor="middle" fill="#333">GND</text>
+<line x1="1599" y1="326" x2="1599" y2="338" stroke="#333" stroke-width="2"/>
+<text x="1624" y="320" font-size="13" fill="#111">STEP 10</text>
+<line x1="1368" y1="364" x2="1580" y2="364" stroke="#6a1b9a" stroke-width="3"/>
+<rect x="1584" y="354" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
+<text x="1599" y="398" font-size="11" text-anchor="middle" fill="#333">GND</text>
+<line x1="1599" y1="374" x2="1599" y2="386" stroke="#333" stroke-width="2"/>
+<text x="1624" y="368" font-size="13" fill="#111">STEP 11</text>
+<line x1="1368" y1="412" x2="1580" y2="412" stroke="#6a1b9a" stroke-width="3"/>
+<rect x="1584" y="402" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
+<text x="1599" y="446" font-size="11" text-anchor="middle" fill="#333">GND</text>
+<line x1="1599" y1="422" x2="1599" y2="434" stroke="#333" stroke-width="2"/>
+<text x="1624" y="416" font-size="13" fill="#111">STEP 12</text>
+<line x1="1368" y1="460" x2="1580" y2="460" stroke="#6a1b9a" stroke-width="3"/>
+<rect x="1584" y="450" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
+<text x="1599" y="494" font-size="11" text-anchor="middle" fill="#333">GND</text>
+<line x1="1599" y1="470" x2="1599" y2="482" stroke="#333" stroke-width="2"/>
+<text x="1624" y="464" font-size="13" fill="#111">STEP 13</text>
+<line x1="1368" y1="508" x2="1580" y2="508" stroke="#6a1b9a" stroke-width="3"/>
+<rect x="1584" y="498" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
+<text x="1599" y="542" font-size="11" text-anchor="middle" fill="#333">GND</text>
+<line x1="1599" y1="518" x2="1599" y2="530" stroke="#333" stroke-width="2"/>
+<text x="1624" y="512" font-size="13" fill="#111">STEP 14</text>
+<line x1="1368" y1="556" x2="1580" y2="556" stroke="#6a1b9a" stroke-width="3"/>
+<rect x="1584" y="546" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
+<text x="1599" y="590" font-size="11" text-anchor="middle" fill="#333">GND</text>
+<line x1="1599" y1="566" x2="1599" y2="578" stroke="#333" stroke-width="2"/>
+<text x="1624" y="560" font-size="13" fill="#111">STEP 15</text>
+<rect x="1740" y="180" width="260" height="680" rx="8" fill="#dcedc8" stroke="#333" stroke-width="2"/>
+<text x="1870" y="208" font-size="20" font-weight="bold" text-anchor="middle" fill="#111">74HC165 #1</text>
+<text x="1870" y="232" font-size="14" text-anchor="middle" fill="#333">step 1–8</text>
+<circle cx="1740" cy="250" r="4" fill="#111"/>
+<text x="1752" y="254" font-size="15" fill="#111" text-anchor="start">9 QH</text>
+<circle cx="1740" cy="300" r="4" fill="#111"/>
+<text x="1752" y="304" font-size="15" fill="#111" text-anchor="start">2 CLK</text>
+<circle cx="1740" cy="350" r="4" fill="#111"/>
+<text x="1752" y="354" font-size="15" fill="#111" text-anchor="start">1 SH/LD</text>
+<circle cx="1740" cy="400" r="4" fill="#111"/>
+<text x="1752" y="404" font-size="15" fill="#111" text-anchor="start">15 CLK INH</text>
+<circle cx="1740" cy="450" r="4" fill="#111"/>
+<text x="1752" y="454" font-size="15" fill="#111" text-anchor="start">16 VCC</text>
+<circle cx="1740" cy="500" r="4" fill="#111"/>
+<text x="1752" y="504" font-size="15" fill="#111" text-anchor="start">8 GND</text>
+<line x1="1740" y1="400" x2="1724" y2="400" stroke="#000" stroke-width="3"/>
+<text x="1720" y="404" font-size="12" fill="#000" text-anchor="end">GND</text>
+<line x1="1740" y1="450" x2="1724" y2="450" stroke="#c62828" stroke-width="3"/>
+<text x="1720" y="454" font-size="12" fill="#c62828" text-anchor="end">3.3V</text>
+<line x1="1740" y1="500" x2="1724" y2="500" stroke="#000" stroke-width="3"/>
+<text x="1720" y="504" font-size="12" fill="#000" text-anchor="end">GND</text>
+<circle cx="2000" cy="220" r="4" fill="#111"/>
+<text x="1988" y="224" font-size="15" fill="#111" text-anchor="end">11 D0</text>
+<circle cx="2000" cy="268" r="4" fill="#111"/>
+<text x="1988" y="272" font-size="15" fill="#111" text-anchor="end">12 D1</text>
+<circle cx="2000" cy="316" r="4" fill="#111"/>
+<text x="1988" y="320" font-size="15" fill="#111" text-anchor="end">13 D2</text>
+<circle cx="2000" cy="364" r="4" fill="#111"/>
+<text x="1988" y="368" font-size="15" fill="#111" text-anchor="end">14 D3</text>
+<circle cx="2000" cy="412" r="4" fill="#111"/>
+<text x="1988" y="416" font-size="15" fill="#111" text-anchor="end">3 D4</text>
+<circle cx="2000" cy="460" r="4" fill="#111"/>
+<text x="1988" y="464" font-size="15" fill="#111" text-anchor="end">4 D5</text>
+<circle cx="2000" cy="508" r="4" fill="#111"/>
+<text x="1988" y="512" font-size="15" fill="#111" text-anchor="end">5 D6</text>
+<circle cx="2000" cy="556" r="4" fill="#111"/>
+<text x="1988" y="560" font-size="15" fill="#111" text-anchor="end">6 D7</text>
+<circle cx="2000" cy="820" r="4" fill="#111"/>
+<text x="1988" y="824" font-size="15" fill="#111" text-anchor="end">10 SER</text>
+<line x1="2000" y1="820" x2="2040" y2="820" stroke="#000" stroke-width="3"/>
+<text x="2048" y="824" font-size="13" fill="#000">GND (fine catena)</text>
+<line x1="2008" y1="220" x2="2220" y2="220" stroke="#6a1b9a" stroke-width="3"/>
+<rect x="2224" y="210" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
+<text x="2239" y="254" font-size="11" text-anchor="middle" fill="#333">GND</text>
+<line x1="2239" y1="230" x2="2239" y2="242" stroke="#333" stroke-width="2"/>
+<text x="2264" y="224" font-size="13" fill="#111">STEP 0</text>
+<line x1="2008" y1="268" x2="2220" y2="268" stroke="#6a1b9a" stroke-width="3"/>
+<rect x="2224" y="258" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
+<text x="2239" y="302" font-size="11" text-anchor="middle" fill="#333">GND</text>
+<line x1="2239" y1="278" x2="2239" y2="290" stroke="#333" stroke-width="2"/>
+<text x="2264" y="272" font-size="13" fill="#111">STEP 1</text>
+<line x1="2008" y1="316" x2="2220" y2="316" stroke="#6a1b9a" stroke-width="3"/>
+<rect x="2224" y="306" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
+<text x="2239" y="350" font-size="11" text-anchor="middle" fill="#333">GND</text>
+<line x1="2239" y1="326" x2="2239" y2="338" stroke="#333" stroke-width="2"/>
+<text x="2264" y="320" font-size="13" fill="#111">STEP 2</text>
+<line x1="2008" y1="364" x2="2220" y2="364" stroke="#6a1b9a" stroke-width="3"/>
+<rect x="2224" y="354" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
+<text x="2239" y="398" font-size="11" text-anchor="middle" fill="#333">GND</text>
+<line x1="2239" y1="374" x2="2239" y2="386" stroke="#333" stroke-width="2"/>
+<text x="2264" y="368" font-size="13" fill="#111">STEP 3</text>
+<line x1="2008" y1="412" x2="2220" y2="412" stroke="#6a1b9a" stroke-width="3"/>
+<rect x="2224" y="402" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
+<text x="2239" y="446" font-size="11" text-anchor="middle" fill="#333">GND</text>
+<line x1="2239" y1="422" x2="2239" y2="434" stroke="#333" stroke-width="2"/>
+<text x="2264" y="416" font-size="13" fill="#111">STEP 4</text>
+<line x1="2008" y1="460" x2="2220" y2="460" stroke="#6a1b9a" stroke-width="3"/>
+<rect x="2224" y="450" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
+<text x="2239" y="494" font-size="11" text-anchor="middle" fill="#333">GND</text>
+<line x1="2239" y1="470" x2="2239" y2="482" stroke="#333" stroke-width="2"/>
+<text x="2264" y="464" font-size="13" fill="#111">STEP 5</text>
+<line x1="2008" y1="508" x2="2220" y2="508" stroke="#6a1b9a" stroke-width="3"/>
+<rect x="2224" y="498" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
+<text x="2239" y="542" font-size="11" text-anchor="middle" fill="#333">GND</text>
+<line x1="2239" y1="518" x2="2239" y2="530" stroke="#333" stroke-width="2"/>
+<text x="2264" y="512" font-size="13" fill="#111">STEP 6</text>
+<line x1="2008" y1="556" x2="2220" y2="556" stroke="#6a1b9a" stroke-width="3"/>
+<rect x="2224" y="546" width="30" height="20" rx="4" fill="#eee" stroke="#333" stroke-width="1.5"/>
+<text x="2239" y="590" font-size="11" text-anchor="middle" fill="#333">GND</text>
+<line x1="2239" y1="566" x2="2239" y2="578" stroke="#333" stroke-width="2"/>
+<text x="2264" y="560" font-size="13" fill="#111">STEP 7</text>
+<line x1="1740" y1="250" x2="1726" y2="250" stroke="#1565c0" stroke-width="3"/>
+<line x1="1726" y1="250" x2="1726" y2="820" stroke="#1565c0" stroke-width="3"/>
+<line x1="1726" y1="820" x2="1360" y2="820" stroke="#1565c0" stroke-width="3"/>
+<text x="1370" y="812" font-size="13" fill="#1565c0" font-weight="bold">chip #1 QH → chip #2 SER (cascata)</text>
+<line x1="1100" y1="250" x2="1086" y2="250" stroke="#1565c0" stroke-width="3"/>
+<line x1="1086" y1="250" x2="1086" y2="780" stroke="#1565c0" stroke-width="3"/>
+<line x1="1086" y1="780" x2="720" y2="780" stroke="#1565c0" stroke-width="3"/>
+<circle cx="720" cy="780" r="4" fill="#1565c0"/>
+<text x="730" y="772" font-size="13" fill="#1565c0" font-weight="bold">chip #2 QH → chip #3 SER (cascata)</text>
+<line x1="720" y1="780" x2="720" y2="820" stroke="#1565c0" stroke-width="3" stroke-dasharray="2,4"/>
+<line x1="226" y1="440" x2="226" y2="250" stroke="#1565c0" stroke-width="3"/>
+<line x1="226" y1="250" x2="460" y2="250" stroke="#1565c0" stroke-width="3"/>
+<text x="240" y="242" font-size="13" fill="#1565c0" font-weight="bold">DATA (MISO) ← QH ultimo chip della catena (#3)</text>
+<line x1="230" y1="480" x2="410" y2="480" stroke="#2e7d32" stroke-width="3"/>
+<line x1="410" y1="480" x2="410" y2="120" stroke="#2e7d32" stroke-width="3"/>
+<line x1="410" y1="120" x2="470" y2="120" stroke="#2e7d32" stroke-width="3"/>
+<line x1="470" y1="120" x2="470" y2="300" stroke="#2e7d32" stroke-width="3"/>
+<line x1="470" y1="300" x2="460" y2="300" stroke="#2e7d32" stroke-width="3"/>
+<line x1="410" y1="120" x2="410" y2="120" stroke="#2e7d32" stroke-width="3"/>
+<line x1="410" y1="120" x2="1110" y2="120" stroke="#2e7d32" stroke-width="3"/>
+<line x1="1110" y1="120" x2="1110" y2="300" stroke="#2e7d32" stroke-width="3"/>
+<line x1="1110" y1="300" x2="1100" y2="300" stroke="#2e7d32" stroke-width="3"/>
+<line x1="410" y1="120" x2="410" y2="120" stroke="#2e7d32" stroke-width="3"/>
+<line x1="410" y1="120" x2="1750" y2="120" stroke="#2e7d32" stroke-width="3"/>
+<line x1="1750" y1="120" x2="1750" y2="300" stroke="#2e7d32" stroke-width="3"/>
+<line x1="1750" y1="300" x2="1740" y2="300" stroke="#2e7d32" stroke-width="3"/>
+<line x1="410" y1="120" x2="410" y2="120" stroke="#2e7d32" stroke-width="3"/>
+<text x="240" y="472" font-size="13" fill="#2e7d32" font-weight="bold">CLK (comune a tutti e 3)</text>
+<line x1="230" y1="520" x2="390" y2="520" stroke="#e65100" stroke-width="3"/>
+<line x1="390" y1="520" x2="390" y2="145" stroke="#e65100" stroke-width="3"/>
+<line x1="390" y1="145" x2="450" y2="145" stroke="#e65100" stroke-width="3"/>
+<line x1="450" y1="145" x2="450" y2="350" stroke="#e65100" stroke-width="3"/>
+<line x1="450" y1="350" x2="460" y2="350" stroke="#e65100" stroke-width="3"/>
+<line x1="390" y1="145" x2="1090" y2="145" stroke="#e65100" stroke-width="3"/>
+<line x1="1090" y1="145" x2="1090" y2="350" stroke="#e65100" stroke-width="3"/>
+<line x1="1090" y1="350" x2="1100" y2="350" stroke="#e65100" stroke-width="3"/>
+<line x1="390" y1="145" x2="1730" y2="145" stroke="#e65100" stroke-width="3"/>
+<line x1="1730" y1="145" x2="1730" y2="350" stroke="#e65100" stroke-width="3"/>
+<line x1="1730" y1="350" x2="1740" y2="350" stroke="#e65100" stroke-width="3"/>
+<text x="240" y="538" font-size="13" fill="#e65100" font-weight="bold">SH/LD (comune a tutti e 3, attivo basso)</text>
+<rect x="460" y="900" width="510" height="70" rx="6" fill="#fff8e1" stroke="#999" stroke-width="1.5"/>
+<text x="470" y="920" font-size="13" font-weight="bold" fill="#111">Mappatura function button (HC165 #3):</text>
+<text x="470" y="940" font-size="12" fill="#333">FB1 PLAY/STOP · FB2 REC · FB3 OVERVIEW · FB4 PATTERN</text>
+<text x="470" y="958" font-size="12" fill="#333">FB5 SOUND · FB6 NOTE · FB7 FX · FB8 MIXER</text>
 <rect x="40" y="650" width="340" height="270" rx="8" fill="#ffffff" stroke="#999" stroke-width="2"/>
 <text x="210" y="678" font-size="20" font-weight="bold" text-anchor="middle" fill="#111">Legenda</text>
 <line x1="60" y1="700" x2="100" y2="700" stroke="#1565c0" stroke-width="3"/>
@@ -205,5 +309,5 @@
 <text x="110" y="832" font-size="15" fill="#111" text-anchor="start">GND</text>
 <line x1="60" y1="860" x2="100" y2="860" stroke="#6a1b9a" stroke-width="3"/>
 <text x="110" y="864" font-size="15" fill="#111" text-anchor="start">Ingressi pulsanti (D0-D7)</text>
-<text x="50" y="900" font-size="12" fill="#333">CLK INH(15)→GND sempre abilitato · Ultimo SER in catena non usato</text>
+<text x="50" y="1010" font-size="12" fill="#333">CLK INH(15)→GND sempre abilitato su tutti e 3 · pin 7 (QH') non collegato su tutti e 3</text>
 </svg>
