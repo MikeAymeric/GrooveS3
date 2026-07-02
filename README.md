@@ -1,5 +1,7 @@
 # GrooveS3
 
+![GrooveS3 logo](docs/logo.svg)
+
 An open source, DIY alternative to the Teenage Engineering OP-1 — a full-featured groovebox built around the **ESP32-S3 DevKitC-1 N16R8**, designed to be assembled for under €50 in components.
 
 16-step, 6-track step sequencer with AMY polyphonic synth engine (FM, PCM, wavetable, Karplus-Strong), PCM sample playback from SD, MIDI DIN I/O, and a 128×64 OLED interface inspired by the OP-1 UI paradigm.
