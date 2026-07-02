@@ -103,7 +103,7 @@ Wiper to GPIO; other terminals to 3.3V and GND. 100 nF cap wiper-to-GND recommen
 
 **Schema di collegamento:** [Potenziometro + condensatore anti-rumore](pot_capacitor_wiring.png)
 
-Functions are mode-dependent. See UI/UX design doc for complete per-mode mapping.
+Functions are mode-dependent. See [ui-ux-design.md](ui-ux-design.md) for complete per-mode mapping.
 
 ---
 
@@ -128,7 +128,7 @@ ENC1: track/pattern navigation. ENC2: value/step editing.
 |------|--------|-------|
 | 21 | SHIFT_BTN | Held modifier key, INPUT_PULLUP — never toggle |
 
-8 function buttons read via 74HC165 #3, chained after the 2 step-button HC165s on the same SPI bus (GPIO 8 LOAD, GPIO 12 CLK). Mapping: FB1=PLAY/STOP, FB2=REC, FB3=OVERVIEW, FB4=PATTERN, FB5=SOUND, FB6=NOTE, FB7=FX, FB8=MIXER.
+8 function buttons read via 74HC165 #3, chained after the 2 step-button HC165s on the same SPI bus (GPIO 8 LOAD, GPIO 12 CLK). Mapping: FB1=PLAY/STOP (SHIFT+FB1=OVERVIEW), FB2=REC (SHIFT+FB2=toggle SEQ/KEYS), FB3=OVERVIEW, FB4=PATTERN, FB5=SOUND, FB6=NOTE, FB7=FX, FB8=MIXER. Mappatura completa e comportamento per schermata: [ui-ux-design.md](ui-ux-design.md).
 
 ---
 
